@@ -1,0 +1,36 @@
+# dependencies
+node_modules
+
+# package-log.json
+# package-lock.json
+
+# artifacts
+/build
+dist
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+.env
+.env.*
+!.env.template
+
+# Debug log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+!.vscode/settings.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+#Custom
+.local
+.l

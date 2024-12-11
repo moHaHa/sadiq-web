@@ -1,0 +1,90 @@
+import { ThemeConfig } from 'antd';
+import { kdsThemes } from './kdsThemes';
+const {
+	'base-primary-primary': colorPrimary,
+	'base-others-border': colorBorder,
+	'base-others-divider': colorSplit,
+	'base-primary-white-and-black': colorBgMask,
+	'base-primary-medium-gray': colorTextTertiary,
+} = kdsThemes.dark.colors;
+export const antdTheme: ThemeConfig = {
+	token: {
+		colorPrimary,
+		fontFamily: 'Poppins',
+		opacityLoading: 1,
+		colorFill: kdsThemes.dark.colors['base-primary-light-gray'],
+		colorBorder,
+		colorSplit,
+		colorBgMask,
+		colorTextTertiary,
+		// colorBgBase: '#222',
+		// controlOutline: kdsThemes.dark.colors['base-others-primary-tint'],
+		// colorBgContainer: kdsThemes.dark.colors['base-primary-white-and-black'],
+		// colorBgElevated: kdsThemes.dark.colors['base-primary-white-and-black'],
+		controlOutline: kdsThemes.dark.colors['base-others-primary-tint'],
+		colorBgContainer: kdsThemes.dark.colors['base-background-basic'],
+		colorBgElevated: kdsThemes.dark.colors['base-primary-white-and-black'],
+		colorBgContainerDisabled: 'rgba(100,100,100, 0.04)',
+		// colorError '#ff4d4f',
+		// colorErrorBg '#fff2f0',
+		// colorErrorBgHover '#fff1f0',
+		// colorErrorHover '#ff7875',
+		colorErrorOutline: 'rgba(255, 38, 5, 0.06)',
+		colorFillSecondary: 'rgba(78,78,78, 0.1)',
+		colorFillTertiary: 'rgba(100,100,100, 0.04)',
+		colorIcon: 'rgba(100,100,100, 0.45)',
+		colorIconHover: 'rgba(100,100,100, 0.88)',
+		// colorPrimary  '#1677ff',
+		// colorPrimaryHover  '#4096ff',
+		colorText: kdsThemes.dark.colors['base-font-colors-black'],
+
+		// colorTextDescription: 'rgba(100,100,100, 0.45)',
+		// colorTextDisabled: 'rgba(100,100,100, 0.25)',
+		// colorTextPlaceholder: 'rgba(100,100,100, 0.25)',
+		// colorTextQuaternary: 'rgba(100,100,100, 0.25)',
+
+		// colorTextTertiary : 'rgba(100,100,100, 0.45)',
+		// colorWarning '#faad14',
+		// colorWarningBg '#fffbe6',
+		// colorWarningBgHover '#fff1b8',
+		// colorWarningHover '#ffd666',
+		colorWarningOutline: 'rgba(255, 215, 5, 0.1)',
+
+		colorTextDescription: kdsThemes.dark.colors['base-font-colors-black-70'],
+		colorTextDisabled: kdsThemes.dark.colors['base-font-colors-black-60'],
+		colorTextPlaceholder: kdsThemes.dark.colors['base-font-colors-black-60'],
+		colorTextQuaternary: kdsThemes.dark.colors['base-font-colors-black-60'],
+		colorLink: kdsThemes.dark.colors['base-font-colors-black-70'],
+		colorLinkHover: kdsThemes.dark.colors['base-primary-primary-light'],
+		colorLinkActive: kdsThemes.dark.colors['base-primary-primary'],
+		//
+
+		borderRadius: 8,
+		borderRadiusLG: 8,
+		borderRadiusSM: 4,
+		borderRadiusXS: 2,
+	},
+	components: {
+		Select: {
+			multipleItemColorDisabled: 'rgba(0, 0, 0, 0.25)',
+			multipleSelectorBgDisabled: 'rgba(0, 0, 0, 0.04)',
+			optionActiveBg: 'rgba(0, 0, 0, 0.04)',
+			optionSelectedBg: kdsThemes.dark.colors['base-others-primary-tint'],
+			optionSelectedColor: kdsThemes.dark.colors['base-font-colors-black'],
+		},
+		Collapse: {
+			contentBg: 'transparent',
+			contentPadding: 0,
+			headerBg: 'transparent',
+			headerPadding: 0,
+		},
+		Table: {
+			headerBg: kdsThemes.dark.colors['base-background-secondary'],
+			footerBg: kdsThemes.dark.colors['base-background-cards'],
+			borderColor: kdsThemes.dark.colors['base-others-divider'],
+		},
+		DatePicker: {
+			cellActiveWithRangeBg: '#0ff',
+		},
+	},
+};
