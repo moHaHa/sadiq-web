@@ -4,15 +4,11 @@ import TestPage from './TestPage/TestPage';
 
 
 export const mainRoutes: RouteObject = {
-	path: 'main',
+	path: '',
 	element: <DefaultLayout />,
 	children: [
 		{
-			path: 'foo',
-			element: <>foo</>,
-		},
-		{
-			path: 'test',
+			path: '',
 			element: <TestPage></TestPage>,
 		},
 		
