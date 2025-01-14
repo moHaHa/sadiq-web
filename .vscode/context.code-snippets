@@ -1,0 +1,28 @@
+{
+	"React Context": {
+		"prefix": "rcontext",
+		"body": [
+			"import { createContext, useContext } from 'react';",
+			"",
+			"interface I${1:Name} {",
+			"  value: undefined;",
+			"}",
+			"const init: I${1:Name} = {",
+			"  value: undefined,",
+			"};",
+			"",
+			"export const ${1:Name} = createContext<I${1:Name}>(init);",
+			"",
+			"export const use${1:Name} = () => {",
+			"  const ${2:name} = useContext(${1:Name});",
+			"",
+			"  if (!${2:name}) {",
+			"    throw new Error('use${1:Name} must be used within <${1:Name}.Provider>');",
+			"  }",
+			"",
+			"  return ${2:name};",
+			"};"
+		],
+		"description": "Create a new React context"
+	}
+}

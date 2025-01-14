@@ -1,0 +1,31 @@
+{
+	"UseAnalysis Hook": {
+		"prefix": "useAnalysis",
+		"body": [
+			"import { useQuery, UseQueryOptions } from 'react-query';",
+			"import { objectToQueryString } from '~/helpers/objectToQueryString';",
+			"import { workOrdersQueryKey } from '~/server/workOrder/interfaces/keys';",
+			"import http, { HttpError } from '~/services/httpService';",
+			"",
+			"export interface I${1:AnalysisParams} {}",
+			"export type T${2:AnalysisData} = {",
+			"  // Define your mutation type here",
+			"};",
+			"",
+			"export function use${3:Analysis}Query(",
+			"  params?: I${1:AnalysisParams},",
+			"  options?: UseQueryOptions<T${2:AnalysisData}, HttpError>",
+			") {",
+			"  const queryString = objectToQueryString(params);",
+			"  const key = [workOrdersQueryKey, '${4:/work-order/analysis/count/category}', queryString];",
+			"  return useQuery<T${2:AnalysisData}, HttpError>(",
+			"    key,",
+			"    () =>",
+			"      http.get<T${2:AnalysisData}>('${4:/work-order/analysis/count/category}?' + queryString).then(({ data }) => data),",
+			"    options",
+			"  );",
+			"}"
+		],
+		"description": "Creates a useAnalysis hook with customizable query parameters and endpoint"
+	}
+}

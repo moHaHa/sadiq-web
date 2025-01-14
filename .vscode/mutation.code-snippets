@@ -1,0 +1,44 @@
+{
+	"UseRecdordsMutation Hook": {
+		"prefix": "useRecordsMutationHook",
+		"body": [
+			"import { UseMutationOptions, useMutation } from 'react-query';",
+			"import http, { HttpError } from '~/services/httpService';",
+			"import { T${2:Record}Mutation } from './types';",
+			"",
+			"async function createFn(body: T${2:Record}Mutation) {",
+			"\treturn http.post<boolean>(`/${3:record}`, body).then(({ data }) => data);",
+			"}",
+			"",
+			"async function updateFn(id: string, body: T${2:Record}Mutation) {",
+			"\treturn http.patch<boolean>(`/${3:record}/` + id, body).then(({ data }) => data);",
+			"}",
+			"",
+			"export function use${1:Records}Mutation(",
+			"\tid?: string | undefined,",
+			"\toptions?: UseMutationOptions<boolean, HttpError, T${2:Record}Mutation>",
+			") {",
+			"\treturn useMutation<boolean, HttpError, T${2:Record}Mutation>((body) => (id ? updateFn(id, body) : createFn(body)), options);",
+			"}"
+		],
+		"description": "Create a custom mutation hook using react-query"
+	},
+	"UseMutationSnippet": {
+		"prefix": "useMutationHook",
+		"body": [
+			"import { UseMutationOptions, useMutation } from 'react-query';",
+			"import http, { HttpError } from '~/services/httpService';",
+			"",
+			"export type T${1:Record}Mutation = {",
+			"    // Define your mutation type here",
+			"}",
+			"",
+			"export function use${1:Record}Mutation(",
+			"    options?: UseMutationOptions<boolean, HttpError, T${1:Record}Mutation>",
+			") {",
+			"    return useMutation<boolean, HttpError, T${1:Record}Mutation>((body) => http.post<boolean>(`/${2:endpoint}`, body).then(({ data }) => data), options);",
+			"}"
+		],
+		"description": "Creates a custom hook for a mutation using react-query"
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"prefix": "serverTypesSnippet",
+	"body": [
+		"import { IParamsBase } from ''",
+		"",
+		"export const ${2:record}QueryKey = '${2:record}';",
+		"export interface I${1:Record}Params  extends IParamsBase {",
+		"  name?: string;",
+		"}",
+		"",
+		"export type T${1:Record}Mutation = {",
+		"  // Define your mutation fields here",
+		"};",
+		"export type T${1:Record}Summary = {",
+		"  id: string;",
+		"  // Add other summary fields here",
+		"};",
+		"",
+		"export type T${1:Record}Item = {",
+		"  id: string;",
+		"  // Add other item fields here",
+		"};"
+	],
+	"description": "Snippet for creating  record and editable parameters"
+}

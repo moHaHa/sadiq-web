@@ -1,0 +1,14 @@
+{
+	"userPer": {
+		"prefix": "usePer",
+		"body": ["const {hasPermission} = useLayoutContext()"]
+	},
+	"hasPer": {
+		"prefix": "hasPer",
+		"body": ["hasPermission({ subject: '${1}', action: '${2}' })"]
+	},
+	"useNa": {
+		"prefix": "useNa",
+		"body": ["const { namespace } = useAppNamespace${1}()"]
+	}
+}

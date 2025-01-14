@@ -1,0 +1,51 @@
+{
+	"UseRecordsQuery Hook": {
+		"prefix": "useRecordsQueryHook",
+		"body": [
+			"import { UseQueryOptions, useQuery } from 'react-query';",
+			"import { objectToQueryString } from '~/helpers/objectToQueryString';",
+			"import queryClient from '~/queryClient';",
+			"import http, { HttpError } from '~/services/httpService';",
+			"import { IDataResponse } from '../@shared/types';",
+			"import { T${1:Record}Summary, I${1:Record}Params, ${2:record}QueryKey } from './types';",
+			"",
+			"export function use${1:Record}sQuery(",
+			"\tparams?: I${1:Record}Params,",
+			"\toptions?: UseQueryOptions<IDataResponse<T${1:Record}Summary[]>, HttpError>",
+			") {",
+			"\tconst queryString = objectToQueryString(params);",
+			"\tconst key = [${2:record}QueryKey, queryString];",
+			"\treturn useQuery<IDataResponse<T${1:Record}Summary[]>, HttpError>(",
+			"\t\tkey,",
+			"\t\t() => http.get<IDataResponse<T${1:Record}Summary[]>>('/${3:records}').then(({ data }) => data),",
+			"\t\toptions",
+			"\t);",
+			"}",
+			"",
+			"export function invalidate${1:Records}sQuery() {",
+			"\treturn queryClient.invalidateQueries([${2:record}QueryKey]);",
+			"}"
+		],
+		"description": "Create a custom hook to fetch records using react-query"
+	},
+	"UseRecordsByIdQuery Hook": {
+		"prefix": "useRecordsByIdQueryHook",
+		"body": [
+			"import { UseQueryOptions, useQuery } from 'react-query';",
+			"import queryClient from '~/queryClient';",
+			"import http, { HttpError } from '~/services/httpService';",
+			"import { IDataResponse } from '../@shared/types';",
+			"import { T${1:Record}Item, ${2:record}QueryKey } from './types';",
+			"",
+			"export function use${1:Record}sByIdQuery(id: string, options?: UseQueryOptions<T${1:Record}Item, HttpError>) {",
+			"\tconst key = [${2:record}QueryKey, id];",
+			"\treturn useQuery<T${1:Record}Item, HttpError>(",
+			"\t\tkey,",
+			"\t\t() => http.get<IDataResponse<T${1:Record}Item>>(`/${3:record}/`+id).then(({ data }) => data.data),",
+			"\t\toptions",
+			"\t);",
+			"}"
+		],
+		"description": "Create a custom hook to fetch a record by ID using react-query"
+	}
+}
