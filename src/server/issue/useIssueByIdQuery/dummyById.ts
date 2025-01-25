@@ -1,6 +1,6 @@
-import { TIssueSummary } from "../types/issue.summary.type";
+import { TIssueItem } from "../types/issue.item.type";
 
-export const dummyIssues: TIssueSummary[] = [
+export const dummyIssuesById: TIssueItem[] = [
   {
     id: "1",
     text: "انتهاك لحقوق الإنسان في مكان عام.",
@@ -13,6 +13,11 @@ export const dummyIssues: TIssueSummary[] = [
     },
 
     status: "open",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-14T21:00:00Z").toISOString(),
   },
   {
@@ -27,6 +32,11 @@ export const dummyIssues: TIssueSummary[] = [
     },
 
     status: "inProgress",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-15T10:15:00Z").toISOString(),
   },
   {
@@ -40,6 +50,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "نوى",
     },
     status: "resolved",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-03T12:30:00Z").toISOString(),
   },
   {
@@ -53,6 +68,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "تلكلخ",
     },
     status: "open",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-04T14:45:00Z").toISOString(),
   },
   {
@@ -66,6 +86,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "منبج",
     },
     status: "inProgress",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-05T16:00:00Z").toISOString(),
   },
   {
@@ -79,6 +104,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "السقيلبية",
     },
     status: "resolved",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-06T18:15:00Z").toISOString(),
   },
   {
@@ -92,6 +122,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "البوكمال",
     },
     status: "open",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-07T20:30:00Z").toISOString(),
   },
   {
@@ -105,6 +140,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "معرة النعمان",
     },
     status: "inProgress",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-08T22:45:00Z").toISOString(),
   },
   {
@@ -118,6 +158,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "جرمانا",
     },
     status: "open",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-09T06:00:00Z").toISOString(),
   },
   {
@@ -131,6 +176,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "القامشلي",
     },
     status: "resolved",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-10T08:15:00Z").toISOString(),
   },
   {
@@ -144,6 +194,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "الطبقة",
     },
     status: "open",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-11T10:30:00Z").toISOString(),
   },
   {
@@ -157,6 +212,11 @@ export const dummyIssues: TIssueSummary[] = [
       city: "عفرين",
     },
     status: "resolved",
+    files: [
+      "https://picsum.photos/200/400/?blur",
+      "https://picsum.photos/400/400/?blur",
+      "https://picsum.photos/200/300/?blur",
+    ],
     createdAt: new Date("2025-01-12T12:45:00Z").toISOString(),
   },
 ];

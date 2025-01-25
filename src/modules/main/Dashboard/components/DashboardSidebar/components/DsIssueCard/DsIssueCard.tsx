@@ -27,35 +27,43 @@ const DsIssueCard: FC<DsIssueCardProps> = ({ issue, onOpenDetails }) => {
   };
 
   return (
-    <div className="font-sans psm border-dashed rounded-lg">
-      <div className="flex justify-between">
-        <div>
-          {icon} {arWord}
+    <div className="font-sans   rounded-lg">
+      <div className="flex justify-between ic">
+        <div className="flex ic">
+          <div className="me-sm">{icon} </div>
+          {issue.text.slice(0, 24)}
+          {issue.text.length > 24 && ".."}
         </div>
         <div>{tag}</div>
       </div>
       <div className=" pt-8px text-14px op-50 flex flex-gap-4px">
-        {issue.location.governorate}
+        {issue.location?.governorate}
         <span>، </span>
-        {issue.location.city}
+        {issue.location?.city}
       </div>
-      <div className="mt-14px flex justify-end flex-gap-8px">
-        <Button
-          onClick={() => onOpenDetails?.(issue.id)}
-          className="font-sans"
-          icon={<div className="i-solar-eye-outline"></div>}
-        >
-          التفاصيل
-        </Button>
-        <Button
-          onClick={() => copyLinkToClipboard?.(issue.id)}
-          className="font-sans"
-          icon={<div className="i-solar-copy-outline"></div>}
-        >
-          نسخ الرابط
-        </Button>
+      <div className="mt-14px f justify-between items-end ">
+        <div className="text-12px op50 ">
+          <span dir="ltr">{dayjs(issue.createdAt).fromNow()}</span>
+        </div>
+        <div className="f flex-gap-8px ">
+          <Button
+            size="small"
+            onClick={() => onOpenDetails?.(issue.id)}
+            className="font-sans"
+            icon={<div className="i-solar-eye-outline"></div>}
+          >
+            التفاصيل
+          </Button>
+          <Button
+            size="small"
+            onClick={() => copyLinkToClipboard?.(issue.id)}
+            className="font-sans"
+            icon={<div className="i-solar-copy-outline"></div>}
+          >
+            نسخ الرابط
+          </Button>
+        </div>
       </div>
-      <div className="text-12px op50">{dayjs(issue.createdAt).fromNow()}</div>
 
       {/* <div className="flex flex-wrap gap-8px mt-4px">
         <Button disabled>Assign </Button>

@@ -1,6 +1,8 @@
-import { Divider, Modal, Spin } from "antd";
+import { Modal, Spin } from "antd";
 import { FC } from "react";
+import { getIssueTypeConfig } from "~/server/helpers/getIssueTypeConfig";
 import { useIssueByIdQuery } from "~/server/issue/useIssueByIdQuery/useIssueByIdQuery";
+import DsIssueDetailsContent from "./components/DsIssueDetailsContent";
 
 interface DsIssueDialogProps {
   id?: string;
@@ -11,46 +13,31 @@ const DsIssueDialog: FC<DsIssueDialogProps> = ({ id, onClose }) => {
   const { data, isLoading } = useIssueByIdQuery(id as string, {
     enabled: !!id,
   });
+
+  const issueConfig = data?.data.type
+    ? getIssueTypeConfig(data?.data.type)
+    : undefined;
+
   return (
-    <Modal footer={false} open={!!id} onCancel={onClose}>
+    <Modal
+      title={
+        <div>
+          <div className="font-sans">تفاصيل البلاغ</div>
+        </div>
+      }
+      footer={false}
+      open={!!id}
+      onCancel={onClose}
+    >
       {isLoading ? (
         <div className="h-400px">
           <Spin></Spin>
         </div>
       ) : (
         <>
-          <div> {data?.data.text}</div>
-          <Divider></Divider>
-
-          <div>النوع : {data?.data.type}</div>
-          <Divider></Divider>
-
-          <div>
-            <div>
-              files :{" "}
-              <ul>
-                {data?.data.files?.map((file, index) => (
-                  <li key={index}>{file}</li>
-                ))}
-              </ul>
-            </div>
-            <ul>
-              {data?.data.files?.map((file, index) => (
-                <li key={index}>{file}</li>
-              ))}
-            </ul>
-          </div>
-          <Divider></Divider>
-          <div>
-            {data?.data.location ? (
-              <div>
-                <div>المحافظة: {data?.data.location.governorate}</div>
-                <div>المدينة : {data.data.location.city}</div>
-              </div>
-            ) : (
-              "N/A"
-            )}
-          </div>
+          {data && (
+            <DsIssueDetailsContent issue={data.data}></DsIssueDetailsContent>
+          )}
         </>
       )}
     </Modal>

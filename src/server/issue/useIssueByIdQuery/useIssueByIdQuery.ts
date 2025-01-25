@@ -4,7 +4,7 @@ import { TApp } from "~/server/namespaces/app";
 import { HttpError } from "~/services/httpService";
 import { TIssueItem } from "../types/issue.item.type";
 import { recordQueryKey } from "../types/key.query";
-import { dummyIssues } from "../useIssuesQuery/dummy";
+import { dummyIssuesById } from "./dummyById";
 
 export function useIssueByIdQuery(
   id: string,
@@ -24,7 +24,7 @@ export const httpGetIssueById = (id: string) =>
   //   .then(({ data }) => data);
   new Promise<TApp.IDataResponse<TIssueItem>>((resolve, reject) => {
     setTimeout(() => {
-      const item = dummyIssues.find((e) => e.id == id);
+      const item = dummyIssuesById.find((e) => e.id == id);
       if (item) {
         resolve({ data: item });
       } else {

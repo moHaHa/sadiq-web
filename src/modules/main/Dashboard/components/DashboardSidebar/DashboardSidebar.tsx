@@ -1,10 +1,12 @@
 // components/DashboardSidebar.tsx
+import { Divider, Pagination } from "antd";
 import { FC } from "react";
 import { useUrlState } from "~/hooks/useUrlState/useUrlState";
 import { useIssuesQuery } from "~/server/issue/useIssuesQuery/useIssuesQuery";
 import DsAddIssueDialog from "./components/DsAddIssue/DsAddIssueDialog";
 import DsIssueCard from "./components/DsIssueCard/DsIssueCard";
 import DsIssueDialog from "./components/DsIssueDialog/DsIssueDialog";
+import DsIssuesFilterDialog from "./components/DsIssuesFilter/DsIssuesFilterDialog";
 
 const DashboardSidebar: FC = () => {
   const { data } = useIssuesQuery();
@@ -15,12 +17,16 @@ const DashboardSidebar: FC = () => {
     },
   });
   return (
-    <div className="w-400px bg-white  pt-lg">
-      <div className="text-24px text-base-primary-darker font-sans">
+    <div className="w-400px bg-white  ">
+      <div className="text-24px text-base-primary-darker font-sans pt-sm ps-sm">
         البلاغات الواردة
       </div>
       <div className="b-b-1px b-b-solid b-b-[#EAECF1] mt-14px"></div>
-      <div className="h-[calc(100vh-140px)] overflow-y-scroll pt-60px px-18px">
+      <div className="psm">
+        <DsIssuesFilterDialog></DsIssuesFilterDialog>
+      </div>
+      <div className="b-b-1px b-b-solid b-b-[#EAECF1] "></div>
+      <div className="h-[calc(100vh-260px)] overflow-y-scroll px-18px">
         {data?.data.map((issue) => (
           <div className="mb-8px">
             <DsIssueCard
@@ -29,6 +35,7 @@ const DashboardSidebar: FC = () => {
               }}
               issue={issue}
             ></DsIssueCard>
+            <Divider></Divider>
           </div>
         ))}
         <DsIssueDialog
@@ -37,6 +44,12 @@ const DashboardSidebar: FC = () => {
           }}
           id={urlState?.id}
         ></DsIssueDialog>
+      </div>
+      <div className=" mb-sm b-b-1px b-b-solid b-b-[#EAECF1] "></div>
+
+      <div className="flex ic" dir="ltr">
+        <Pagination total={20}></Pagination>
+        <div className="font-sans text-12px op40 ms-sm"> Total (20)</div>
       </div>
       <div className="py-sm bg-white px-sm select-none cursor-pointer">
         <DsAddIssueDialog

@@ -6,7 +6,7 @@ export type TIssueSummary = {
   id: string;
   text: string;
   type: IssueType;
-  location: LocationTIssueItem;
+  location?: LocationTIssueItem;
 
   status: IssueStatus;
   createdAt: string;
