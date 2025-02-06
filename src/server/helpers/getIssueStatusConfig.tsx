@@ -13,15 +13,15 @@ export const getIssueStatusConfig = (
   > = {
     open: {
       label: "مفتوح",
-      color: "#e74c3c55", // Red for unresolved issues
+      color: "#9B59B655", // Elegant purple for open issues
       tag: (
         <div
           className="inline-block"
           style={{
-            color: "#e74c3c",
+            color: "#9B59B6",
             padding: "4px 8px",
             borderRadius: "4px",
-            background: "#fdecea",
+            background: "#F6EAFB", // Light purple background
           }}
         >
           مفتوح <div className="i-solar:clock-circle-linear" />
@@ -30,15 +30,15 @@ export const getIssueStatusConfig = (
     },
     inProgress: {
       label: "قيد العمل",
-      color: "#f39c1255", // Orange for ongoing issues
+      color: "#1E90FF55", // Bright blue for active progress
       tag: (
         <div
           className="inline-block"
           style={{
-            color: "#f39c12",
+            color: "#1E90FF",
             padding: "4px 8px",
             borderRadius: "4px",
-            background: "#fff4e5",
+            background: "#E6F4FF", // Light blue background
           }}
         >
           قيد العمل <div className="i-svg-spinners:pulse-multiple" />
@@ -47,15 +47,15 @@ export const getIssueStatusConfig = (
     },
     resolved: {
       label: "تم الحل",
-      color: "#2ecc7155", // Green for resolved issues
+      color: "#27AE6055", // Soft green for resolved issues
       tag: (
         <div
           className="inline-block"
           style={{
-            color: "#2ecc71",
+            color: "#27AE60",
             padding: "4px 8px",
             borderRadius: "4px",
-            background: "#eafaf1",
+            background: "#EAF8F1", // Light green background
           }}
         >
           تم الحل <div className="i-solar:check-read-linear" />

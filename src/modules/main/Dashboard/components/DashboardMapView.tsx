@@ -1,17 +1,16 @@
 import { FC, useEffect, useRef, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { TIssueSummary } from "~/server/issue/types/issue.summary.type";
+import { buildIconMarkerContent } from "./helpers/buildIconMarkerContent";
 interface DashboardMapViewProps {
-  value?: { lng: number; lat: number };
-  onChange?: (value: { lng: number; lat: number }) => void;
+  issues: TIssueSummary[];
 }
 
-const DashboardMapView: FC<DashboardMapViewProps> = ({ onChange, value }) => {
+const DashboardMapView: FC<DashboardMapViewProps> = ({ issues }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const marker = useRef<google.maps.marker.AdvancedMarkerElement>();
-
+  const navigate = useNavigate();
   useEffect(() => {
-    // Load the Google Maps script
     const loadGoogleMapsScript = () => {
       const script = document.createElement("script");
       script.src = `https://maps.googleapis.com/maps/api/js?key=${
@@ -22,7 +21,6 @@ const DashboardMapView: FC<DashboardMapViewProps> = ({ onChange, value }) => {
       document.body.appendChild(script);
     };
 
-    // Initialize the map
     const initializeMap = async () => {
       if (mapRef.current) {
         const position = { lat: 33.51523954533201, lng: 36.2717525114952 };
@@ -40,26 +38,30 @@ const DashboardMapView: FC<DashboardMapViewProps> = ({ onChange, value }) => {
           disableDefaultUI: true,
         });
 
-        // add init marker
-        if (value != undefined) {
-          const exMarker = new AdvancedMarkerElement({
-            map: newMap,
-            position: value,
+        issues.forEach((issue) => {
+          const AdvancedMarkerElement =
+            new google.maps.marker.AdvancedMarkerElement({
+              map: newMap,
+              content: buildIconMarkerContent(issue.type),
+              position: issue.location,
+              title: issue.text,
+            });
+
+          AdvancedMarkerElement.addListener("click", () => {
+            navigate("/?issueDetails.id=" + issue.id);
           });
-          marker.current = exMarker;
-        }
+        });
 
         setMap(newMap);
       }
     };
 
-    // Check if the Google Maps object is already loaded
     if (!window.google || !window.google.maps) {
       loadGoogleMapsScript();
     } else {
       initializeMap();
     }
-  }, []);
+  }, [issues]);
 
   return (
     <div
@@ -68,7 +70,7 @@ const DashboardMapView: FC<DashboardMapViewProps> = ({ onChange, value }) => {
         width: "100%",
         height: "100%",
         borderRadius: "12px",
-        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.15)", // Improved mobile styling
+        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.15)",
       }}
     ></div>
   );

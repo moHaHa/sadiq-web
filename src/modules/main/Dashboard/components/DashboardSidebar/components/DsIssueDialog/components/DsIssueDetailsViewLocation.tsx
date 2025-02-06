@@ -1,11 +1,15 @@
 import { FC, useEffect, useRef, useState } from "react";
+import { IssueType } from "~/server/types/issueType.type";
+import { buildIconMarkerContent } from "../../../../helpers/buildIconMarkerContent";
 
 interface DsIssueDetailsViewLocationProps {
   value?: { lng: number; lat: number };
+  issueType: IssueType;
 }
 
 const DsIssueDetailsViewLocation: FC<DsIssueDetailsViewLocationProps> = ({
   value,
+  issueType,
 }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
@@ -45,6 +49,7 @@ const DsIssueDetailsViewLocation: FC<DsIssueDetailsViewLocationProps> = ({
           const exMarker = new AdvancedMarkerElement({
             map: newMap,
             position: value,
+            content: buildIconMarkerContent(issueType),
           });
           marker.current = exMarker;
         }

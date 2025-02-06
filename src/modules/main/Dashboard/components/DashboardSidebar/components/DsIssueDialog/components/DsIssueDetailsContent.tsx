@@ -49,6 +49,8 @@ const DsIssueDetailsContent: FC<DsIssueDetailsContentProps> = ({ issue }) => {
       <Divider></Divider>
       <div className="h-300px">
         <DsIssueDetailsViewLocation
+          key={issue.id}
+          issueType={issue.type}
           value={issue.location}
         ></DsIssueDetailsViewLocation>
       </div>

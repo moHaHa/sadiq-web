@@ -2,6 +2,7 @@
 import { Divider, Pagination } from "antd";
 import { FC } from "react";
 import { useUrlState } from "~/hooks/useUrlState/useUrlState";
+import { useUrlStateReader } from "~/hooks/useUrlState/useUrlStateReader";
 import { useIssuesQuery } from "~/server/issue/useIssuesQuery/useIssuesQuery";
 import DsAddIssueDialog from "./components/DsAddIssue/DsAddIssueDialog";
 import DsIssueCard from "./components/DsIssueCard/DsIssueCard";
@@ -10,11 +11,14 @@ import DsIssuesFilterDialog from "./components/DsIssuesFilter/DsIssuesFilterDial
 
 const DashboardSidebar: FC = () => {
   const { data } = useIssuesQuery();
-  const { urlState, setUrlState } = useUrlState<{ id?: string }>({
+  const { setUrlState } = useUrlState<{ id?: string }>({
     prefix: "issueDetails.",
     initialValues: {
       id: undefined,
     },
+  });
+  const { urlState } = useUrlStateReader<{ id?: string }>({
+    prefix: "issueDetails.",
   });
   return (
     <div className="w-400px bg-white  ">
@@ -26,7 +30,7 @@ const DashboardSidebar: FC = () => {
         <DsIssuesFilterDialog></DsIssuesFilterDialog>
       </div>
       <div className="b-b-1px b-b-solid b-b-[#EAECF1] "></div>
-      <div className="h-[calc(100vh-260px)] overflow-y-scroll px-18px">
+      <div className="h-[calc(100vh-260px)] overflow-y-scroll px-18px ptsm">
         {data?.data.map((issue) => (
           <div className="mb-8px">
             <DsIssueCard
