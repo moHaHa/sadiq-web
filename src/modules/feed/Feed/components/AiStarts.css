@@ -1,0 +1,43 @@
+/* Define the animation for the stars */
+@keyframes star-glow {
+	0%,
+	33.33% {
+		opacity: 1;
+	} /* Fully visible for the first 33.33% of the animation */
+	66.67% {
+		opacity: 0.4;
+	} /* Dimmed at 66.67% of the animation */
+	100% {
+		opacity: 0.9;
+	} /* Remain dimmed until the end of the animation */
+}
+
+/* Define the pause animation */
+@keyframes star-pause {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.9;
+	} /* Stars remain dimmed */
+	50% {
+		opacity: 0;
+	} /* Stars remain dimmed */
+}
+
+/* Apply the animations to each star with a delay */
+.star {
+	animation: star-glow 3s infinite, star-pause 12s infinite;
+}
+
+.star1 {
+	animation-delay: 0s, 0s; /* First star starts immediately */
+}
+
+.star2 {
+	animation-delay: 1s, 0s; /* Second star starts after 1s */
+}
+
+.star3 {
+	animation-delay: 2s, 0s; /* Third star starts after 2s */
+}

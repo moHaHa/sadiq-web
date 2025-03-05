@@ -1,10 +1,11 @@
 export namespace TApp {
-  export interface IDataResponse<T> {
-    data: T;
-    totalRecords?: number;
-  }
-  export interface IParamsBase {
-    skip?: number;
-    limit?: number;
-  }
+	export interface IDataResponse<T> {
+		data: T;
+		totalRecords?: number;
+	}
+	export interface IParamsBase {
+		total?: boolean;
+		skip?: number;
+		limit?: number;
+	}
 }

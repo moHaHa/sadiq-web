@@ -1,7 +1,7 @@
 import { DatePicker, Select } from "antd";
 import { FC } from "react";
-import IssueStatusSelect from "~/components/LayoutContent/IssueStatusSelect/IssueStatusSelect";
-import IssueTypeSelect from "~/components/LayoutContent/IssueTypeSelect/IssueTypeSelect";
+import IssueStatusSelect from "~/components/IssueStatusSelect/IssueStatusSelect";
+import IssueTypeSelect from "~/components/IssueTypeSelect/IssueTypeSelect";
 import AppLayout from "~/layouts/AppLayout/AppLayout";
 import PreFiltersSelect from "./components/PreFiltersSelect/PreFiltersSelect";
 

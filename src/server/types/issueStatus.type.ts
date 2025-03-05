@@ -1,1 +1,1 @@
-export type IssueStatus = "open" | "inProgress" | "resolved";
+export type IssueStatus = 'open' | 'in progress' | 'closed';

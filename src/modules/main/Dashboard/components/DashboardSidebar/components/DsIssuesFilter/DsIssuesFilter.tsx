@@ -1,7 +1,7 @@
 import { DatePicker, Select } from "antd";
 import { FC } from "react";
-import IssueStatusSelect from "~/components/LayoutContent/IssueStatusSelect/IssueStatusSelect";
-import IssueTypeSelect from "~/components/LayoutContent/IssueTypeSelect/IssueTypeSelect";
+import IssueStatusSelect from "~/components/IssueStatusSelect/IssueStatusSelect";
+import IssueTypeSelect from "~/components/IssueTypeSelect/IssueTypeSelect";
 
 interface DsIssuesFilterProps {}
 

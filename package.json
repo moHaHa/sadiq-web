@@ -2,7 +2,7 @@
 	"name": "upgrading-syria",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --host --port=4869",
 		"build": "tsc && vite build",
 		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
@@ -39,6 +39,7 @@
 		"vite-plugin-checker": "^0.6.2"
 	},
 	"devDependencies": {
+		"@iconify-json/line-md": "^1.2.5",
 		"@iconify-json/solar": "^1.2.1",
 		"@iconify-json/svg-spinners": "^1.2.2",
 		"@iconify-json/system-uicons": "^1.2.1",

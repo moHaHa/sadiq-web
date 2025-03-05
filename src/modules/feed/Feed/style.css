@@ -1,0 +1,34 @@
+body {
+	background-color: #e0ede668;
+}
+
+.btn-grad {
+	background-image: linear-gradient(to right, #06be84 0%, #48bf8b 51%, #06be62 100%);
+}
+.btn-grad {
+	text-align: center;
+	text-transform: uppercase;
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: 0 0 20px #eee;
+	border-radius: 10px;
+	display: block;
+}
+
+.down-word {
+	opacity: 0; /* Start with the word invisible */
+	transform: translateY(-18px); /* Initial position */
+	animation: slideDown 1s ease forwards; /* Apply the animation */
+}
+
+@keyframes slideDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-18px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

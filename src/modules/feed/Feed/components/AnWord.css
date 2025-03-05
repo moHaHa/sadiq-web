@@ -1,0 +1,35 @@
+/* Button styling */
+.animated-button {
+	/* padding: 10px 20px; */
+	border-radius: 5px;
+	overflow-y: hidden;
+	position: relative;
+	cursor: pointer;
+}
+
+/* Container for words */
+.word-container {
+	position: relative;
+}
+
+/* Word styling */
+.word {
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+	transform: translateY(-100%);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Visible word */
+.word.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Animation for the next word */
+.word:not(.visible) {
+	opacity: 0;
+	transform: translateY(100%);
+}

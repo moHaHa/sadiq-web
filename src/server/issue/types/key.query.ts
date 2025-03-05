@@ -1,1 +1,1 @@
-export const recordQueryKey = "issue";
+export const issueQueryKey = 'issue';

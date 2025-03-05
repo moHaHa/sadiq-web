@@ -1,0 +1,16 @@
+@keyframes glow {
+	0% {
+		filter: drop-shadow(0 0 5px rgba(122, 218, 157, 0.5)) drop-shadow(0 0 10px rgba(122, 218, 157, 0.3));
+	}
+	50% {
+		filter: drop-shadow(0 0 10px rgba(168, 230, 199, 0.5)) drop-shadow(0 0 15px rgba(168, 230, 199, 0.3));
+	}
+	100% {
+		filter: drop-shadow(0 0 5px rgba(122, 218, 157, 0.5)) drop-shadow(0 0 10px rgba(122, 218, 157, 0.3));
+	}
+}
+
+.glowing-logo {
+	animation: glow 4s ease-in-out infinite;
+	z-index: 1; /* Ensure the logo is above the blurred layer */
+}

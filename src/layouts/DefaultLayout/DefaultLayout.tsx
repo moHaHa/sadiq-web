@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-interface DefaultLayout {}
-const DefaultLayout: FC<DefaultLayout> = ({}) => {
+interface FullLayout {}
+const FullLayout: FC<FullLayout> = ({}) => {
 	return (
 		<>
 			<Outlet></Outlet>
 		</>
 	);
 };
-export default DefaultLayout;
+export default FullLayout;
