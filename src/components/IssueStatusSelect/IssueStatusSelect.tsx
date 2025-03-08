@@ -1,53 +1,53 @@
-import { Button, Space } from "antd";
-import { FC, useState } from "react";
-import { IssueStatus } from "~/server/types/issueStatus.type";
+import { Button, Space } from 'antd';
+import { FC } from 'react';
+import { IssueStatus } from '~/server/types/issueStatus.type';
 
-interface IssueStatusSelectProps {}
+interface IssueStatusSelectProps {
+	value?: IssueStatus[];
+	onChange?: (value: IssueStatus[]) => void;
+}
 
-const IssueStatusSelect: FC<IssueStatusSelectProps> = ({}) => {
-  const [selectedValues, setSelectedValues] = useState<IssueStatus[]>([]);
+const IssueStatusSelect: FC<IssueStatusSelectProps> = ({ onChange, value }) => {
+	const items: { label: string; value: IssueStatus; icon: JSX.Element }[] = [
+		{
+			value: 'open',
+			label: 'open',
+			icon: <div className='i-solar:clock-circle-linear' />,
+		},
+		{
+			value: 'in progress',
+			label: 'In Progress',
+			icon: <div className='i-svg-spinners:pulse-multiple' />,
+		},
+		{
+			value: 'closed',
+			label: 'Closed',
+			icon: <div className='i-solar:check-read-linear' />,
+		},
+	];
 
-  const items: { label: string; value: IssueStatus; icon: JSX.Element }[] = [
-    {
-      value: "open",
-      label: "open",
-      icon: <div className="i-solar:clock-circle-linear" />,
-    },
-    {
-      value: "inProgress",
-      label: "In Progress",
-      icon: <div className="i-svg-spinners:pulse-multiple" />,
-    },
-    {
-      value: "resolved",
-      label: "Resolved",
-      icon: <div className="i-solar:check-read-linear" />,
-    },
-  ];
+	const handleButtonClick = (e: IssueStatus) => {
+		if (value?.includes(e)) {
+			onChange?.(value.filter((v) => v !== e));
+		} else {
+			[...(value ?? []), e];
+		}
+	};
 
-  const handleButtonClick = (value: IssueStatus) => {
-    setSelectedValues(
-      (prevSelected) =>
-        prevSelected.includes(value)
-          ? prevSelected.filter((v) => v !== value) // Deselect if already selected
-          : [...prevSelected, value] // Add if not selected
-    );
-  };
-
-  return (
-    <Space style={{ width: "100%" }} direction="horizontal" wrap>
-      {items.map((item) => (
-        <Button
-          key={item.value}
-          type={selectedValues.includes(item.value) ? "primary" : "dashed"}
-          onClick={() => handleButtonClick(item.value)}
-        >
-          {item.icon} {/* Render the icon */}
-          {item.label}
-        </Button>
-      ))}
-    </Space>
-  );
+	return (
+		<Space style={{ width: '100%' }} direction='horizontal' wrap>
+			{items.map((item) => (
+				<Button
+					key={item.value}
+					type={value?.includes(item.value) ? 'primary' : 'dashed'}
+					onClick={() => handleButtonClick(item.value)}
+				>
+					{item.icon} {/* Render the icon */}
+					{item.label}
+				</Button>
+			))}
+		</Space>
+	);
 };
 
 export default IssueStatusSelect;

@@ -3,10 +3,12 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FC, useState } from 'react';
 import ImageGallery from '~/components/ImageGallery/ImageGallery';
+import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { getIssueStatusConfig } from '~/server/helpers/getIssueStatusConfig';
 import { getIssueTypeConfig } from '~/server/helpers/getIssueTypeConfig';
 import { TIssueSummary } from '~/server/issue/types/issue.summary.type';
 import FeedIssueCardActivities from './components/FeedIssueCardActivities/FeedIssueCardActivities';
+import IssuePublishToggle from './components/IssuePublishToggle/IssuePublishToggle';
 dayjs.extend(relativeTime);
 
 interface FeedIssueCardProps {
@@ -18,7 +20,7 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 	const { arWord, color, icon } = getIssueTypeConfig(issue.type);
 	const { tag } = getIssueStatusConfig(issue.status);
 	const [open, setOpen] = useState(false);
-
+	const [publish, setPublish] = useState(issue.publish);
 	const media = issue.files.filter((e) => e.mimetype == 'image/jpeg' || e.mimetype == 'image/png');
 	const copyLinkToClipboard = (link: string) => {
 		navigator.clipboard
@@ -30,6 +32,8 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 				message.error('حدث خطأ أثناء نسخ الرابط');
 			});
 	};
+
+	const { mine } = useAppWrapperContext();
 
 	return (
 		<div className='font-sans bg-white py-12px   rounded-lg'>
@@ -66,6 +70,15 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 			<div>
 				<FeedIssueCardActivities issue={issue} open={open} issueId={issue.id}></FeedIssueCardActivities>
 			</div>
+			{mine?.role == 'admin' && (
+				<div className='pt-4px fcc'>
+					<IssuePublishToggle
+						onSuccess={(value) => setPublish(value)}
+						issueId={issue.id}
+						value={publish}
+					></IssuePublishToggle>
+				</div>
+			)}
 
 			{/* <div className="flex flex-wrap gap-8px mt-4px">
         <Button disabled>Assign </Button>

@@ -1,21 +1,22 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
-  },
-  "cSpell.words": [
-    "abiot",
-    "Alef",
-    "alfuttaim",
-    "Antd",
-    "Facilitrol",
-    "khaleej",
-    "qrcode",
-    "Quadrimestre",
-    "Sadiq",
-    "Upsert",
-    "watad"
-  ]
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit",
+		"source.organizeImports": "explicit"
+	},
+	"cSpell.words": [
+		"abiot",
+		"Alef",
+		"alfuttaim",
+		"Antd",
+		"Facilitrol",
+		"Governorates",
+		"khaleej",
+		"qrcode",
+		"Quadrimestre",
+		"Sadiq",
+		"Upsert",
+		"watad"
+	]
 }

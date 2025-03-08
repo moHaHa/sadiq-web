@@ -19,6 +19,7 @@ export type TIssueSummary = {
 		name: string;
 		nameAr: string;
 	};
+	publish: boolean;
 	status: IssueStatus;
 	createdAt: string;
 };

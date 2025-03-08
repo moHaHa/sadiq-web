@@ -34,7 +34,7 @@ const FeedIssueCardActivities: FC<FeedIssueCardActivitiesProps> = ({ issueId, op
 						<>
 							{data?.data.length! > 0 && (
 								<div className='layers z-1'>
-									<div className='a-layer z-1 pt-12px ps-50px'>
+									<div className='a-layer z-1 pt-12px ps-50px pb-40px'>
 										<div className='w-1px bg-[#33333344] h-full '></div>
 									</div>
 									<div className='r-layer-content z-2 '>

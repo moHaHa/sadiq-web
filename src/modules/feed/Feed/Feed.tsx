@@ -1,11 +1,16 @@
+import { Button, Popover } from 'antd';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '~/assets/logo.svg';
+import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { useUrlState } from '~/hooks/useUrlState/useUrlState';
 import { publicViews } from '~/router';
+import tokenService from '~/services/tokenService';
 import AiStars from './components/AiStarts';
 import BgAbs from './components/BgAbs';
 import BgGreen from './components/BgGreen';
+import FeedFilter from './components/FeedFilter/FeedFilter';
+import GlowingTextHeader from './components/GlowingTextHeader';
 import IssueButton from './components/IssueButton';
 import FeedList from './FeedList';
 import FeedMap from './FeedMap';
@@ -19,16 +24,64 @@ const Feed: FC<FeedProps> = ({}) => {
 			value: 'list',
 		},
 	});
+	const { mine } = useAppWrapperContext();
 
 	const navigate = useNavigate();
+	const popoverContent = (
+		<div>
+			{mine ? (
+				<Button
+					type='link'
+					onClick={() => {
+						tokenService.logout();
+						navigate('/login');
+					}}
+				>
+					تسجيل الخروج <div className='i-solar:logout-2-linear'></div>
+				</Button>
+			) : (
+				<Button type='link' onClick={() => navigate('/login')}>
+					Login
+				</Button>
+			)}
+		</div>
+	);
 	return (
 		<div>
 			<BgGreen></BgGreen>
 			<div className='fixed z-999 left-0 right-0 top-0  bg-[#ffffff99] backdrop-blur-lg h-50px shadow-[0px_3px_6px_rgba(0,0,0,0.07)]'>
-				<div className='full flex ic px-4px'>
-					<div className='w-40px'>
-						<img className='w-full' src={logo as any} alt='' />
+				<div className='full flex ic justify-between px-4px'>
+					<div>
+						<div className='flex ic'>
+							<div className='w-40px flex flex-col ic'>
+								<img className='w-full' src={logo as any} alt='' />
+								<GlowingTextHeader text='صديق'></GlowingTextHeader>
+							</div>
+						</div>
 					</div>
+					<Popover placement='bottomRight' content={popoverContent} trigger='click'>
+						{mine?.role == 'admin' ? (
+							<>
+								<div className='font-sans text-12px'>
+									Admin Account
+									<div className='i-solar:shield-star-bold-duotone ms-4px mb-2px text-16px text-base-primary-main'></div>
+								</div>
+							</>
+						) : mine?.role == 'user' ? (
+							<>
+								<div className='font-sans text-12px w-30px h-30px border-1px border-solid border-[#33333333] fcc  rounded-full'>
+									<div className='i-solar:user-rounded-bold-duotone text-18px text-[#333]'></div>
+								</div>
+							</>
+						) : (
+							<>
+								<div className='font-sans text-12px'>
+									Login
+									<div className='i-solar:login-2-line-duotone ms-4px mb-2px text-16px text-base-primary-main'></div>
+								</div>
+							</>
+						)}
+					</Popover>
 				</div>
 			</div>
 			<div className='fixed z-999 left-0 right-0 bottom-0 psm in-vis flex justify-center '>
@@ -64,7 +117,11 @@ const Feed: FC<FeedProps> = ({}) => {
 					</div>
 				</div>
 			</div>
-			<div className='pt-60px px-8px'>{urlState?.value == 'map' ? <FeedMap></FeedMap> : <FeedList></FeedList>}</div>
+			<div className='pt-50px'></div>
+			<div className='py-8px'>
+				<FeedFilter></FeedFilter>
+			</div>
+			<div className='px-8px'>{urlState?.value == 'map' ? <FeedMap></FeedMap> : <FeedList></FeedList>}</div>
 		</div>
 	);
 };

@@ -40,7 +40,7 @@ export default defineConfig<Theme>({
 			'px-kds-16px': 'px-16px  zero:px-8px wide:px-16px ',
 		},
 		{
-			btn: 'border-none cursor-pointer rounded-4px px-6px  py-2px text-14px shadow bg-white active:shadow-none transition ',
+			btn: 'border-none cursor-pointer rounded-4px px-6px  py-4px outline-1px outline-[#33333311] text-14px shadow bg-white active:shadow-none transition ',
 		},
 		{
 			layers: 'relative',
