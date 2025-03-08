@@ -1,4 +1,5 @@
-import { Button } from 'antd';
+import { Button, Switch } from 'antd';
+import Search from 'antd/es/transfer/search';
 import { FC, useState } from 'react';
 import CitySelect from '~/components/CitySelect/CitySelect';
 import GovernorateSelect from '~/components/GovernorateSelect/GovernorateSelect';
@@ -98,14 +99,41 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange }) => {
 					<span>Closed</span>
 				</Button>
 				<div className='min-w-200px'>
-					<GovernorateSelect mode='multiple' style={{ width: '100%' }}></GovernorateSelect>
-					{/* <Select style={{ width: '100%' }} placeholder={' المحافظة'}></Select> */}
+					<GovernorateSelect
+						onChange={(e) => {
+							console.log(e as string[]);
+						}}
+						mode='multiple'
+						style={{ width: '100%' }}
+					></GovernorateSelect>
 				</div>
 				<div className='min-w-200px'>
-					<CitySelect mode='multiple' style={{ width: '100%' }}></CitySelect>
+					<CitySelect
+						onChange={(e) => {
+							console.log(e as string[]);
+						}}
+						mode='multiple'
+						style={{ width: '100%' }}
+					></CitySelect>
 				</div>
 				<div className='min-w-130px'>
-					<DatePeriodSelect></DatePeriodSelect>
+					<DatePeriodSelect
+						onChange={(e) => {
+							console.log(e?.start);
+							console.log(e?.end);
+						}}
+					></DatePeriodSelect>
+				</div>
+				<div className='min-w-160px'>
+					<Search
+						placeholder='بحث في وصف البلاغ'
+						onChange={(e) => {
+							console.log(e.target.value);
+						}}
+					></Search>
+				</div>
+				<div className='min-w-130px fcc'>
+					<Switch unCheckedChildren={'Published'} checkedChildren={'UnPublished'}></Switch>
 				</div>
 			</div>
 		</div>
