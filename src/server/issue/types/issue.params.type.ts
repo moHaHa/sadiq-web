@@ -7,8 +7,8 @@ interface IIssueParams extends TApp.IParamsBase {
 	status?: IssueStatus[];
 	'createdAt[gte]'?: string;
 	'createdAt[lte]'?: string;
-	city: string[];
-	governorate: string[];
+	city?: string[];
+	governorate?: string[];
 	text?: string;
 	publish?: boolean;
 }
