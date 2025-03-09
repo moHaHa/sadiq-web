@@ -1,4 +1,5 @@
 import { message } from 'antd';
+
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FC, useState } from 'react';
@@ -37,12 +38,21 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 
 	return (
 		<div className='font-sans bg-white py-12px   rounded-lg'>
-			<div className='flex justify-between px-12px ic text-14px'>
-				<div className='flex ic'>
-					<div className='me-sm'>{icon} </div>
-					{issue.governorate?.nameAr ?? issue.governorate?.name}
-					<span className='mx-4px'>، </span>
-					{issue.city?.nameAr ?? issue.city?.name}
+			<div className='flex justify-between px-12px ic '>
+				<div className='pt-12px'>
+					<div className='text-14px flex ic'>
+						<div className='me-sm'>{icon} </div>
+						<div>
+							<div className='flex ic'>
+								{issue.governorate?.nameAr ?? issue.governorate?.name}
+								<span className='mx-4px'>، </span>
+								{issue.city?.nameAr ?? issue.city?.name}
+							</div>
+							<div className='text-12px op-35 mt-4px'>
+								<span dir='ltr'>{dayjs(issue.createdAt).fromNow()}</span>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div>{tag}</div>
 			</div>
@@ -54,9 +64,7 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 				<ImageGallery media={media}></ImageGallery>
 			</div>
 			<div className='mt-14px f justify-between items-end px-12px '>
-				<div className='text-12px op50 '>
-					<span dir='ltr'>{dayjs(issue.createdAt).fromNow()}</span>
-				</div>
+				<div className='text-12px op50 '></div>
 				<div className='f flex-gap-8px  '>
 					<div
 						onClick={() => setOpen(!open)}

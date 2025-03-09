@@ -1,14 +1,18 @@
 import { Pagination } from 'antd';
 import { FC } from 'react';
 import { usePagination } from '~/hooks/usePagination/usePagination';
+import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import { useIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
 import FeedIssueCard from './components/FeedIssueCard/FeedIssueCard';
 
-interface FeedListProps {}
+interface FeedListProps {
+	params?: TIssueParams;
+}
 
-const FeedList: FC<FeedListProps> = ({}) => {
+const FeedList: FC<FeedListProps> = ({ params }) => {
 	const { limit, pagination, setPage, skip } = usePagination({ pageSize: 50, initialPage: 1 });
 	const { data } = useIssuesQuery({
+		...params,
 		total: true,
 		limit,
 		skip,
@@ -16,7 +20,7 @@ const FeedList: FC<FeedListProps> = ({}) => {
 	return (
 		<div className='pb-140px'>
 			{data?.data.map((issue) => (
-				<div className='mb-8px'>
+				<div className='mb-8px' key={issue.id}>
 					<FeedIssueCard issue={issue} onOpenDetails={() => {}}></FeedIssueCard>
 				</div>
 			))}
