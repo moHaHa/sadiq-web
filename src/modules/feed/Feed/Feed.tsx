@@ -52,10 +52,10 @@ const Feed: FC<FeedProps> = ({}) => {
 		</div>
 	);
 	return (
-		<div className='max-w-400px mx-auto'>
+		<div className=''>
 			<div>
 				<BgGreen></BgGreen>
-				<div className='fixed z-999 left-0 right-0 top-0  bg-[#ffffff99] backdrop-blur-lg h-50px shadow-[0px_3px_6px_rgba(0,0,0,0.07)]'>
+				<div className='fixed z-999 left-0 right-0 top-0  bg-[#ffffff11] backdrop-blur-lg h-50px shadow-[0px_3px_6px_rgba(0,0,0,0.07)]'>
 					<div className='full flex ic justify-between px-4px'>
 						<div>
 							<div className='flex ic'>
@@ -131,7 +131,7 @@ const Feed: FC<FeedProps> = ({}) => {
 					</div>
 				</div>
 				<div className='pt-50px'></div>
-				<div className='py-8px'>
+				<div className='sticky top-50px z-999 '>
 					<FeedFilter value={params} onParamsChange={setParams}></FeedFilter>
 				</div>
 				<div className='px-8px'>

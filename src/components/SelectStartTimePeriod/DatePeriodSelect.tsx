@@ -37,6 +37,7 @@ interface DatePeriodSelect extends Omit<SelectProps, 'value' | 'onChange'> {
 	showYearOption?: boolean;
 	disabledDateProp?: (current: Dayjs) => boolean;
 	nextDates?: boolean;
+	small?: boolean;
 }
 const DatePeriodSelect: FC<DatePeriodSelect> = ({
 	onChange,
@@ -48,6 +49,7 @@ const DatePeriodSelect: FC<DatePeriodSelect> = ({
 	showYearOption = true,
 	disabledDateProp,
 	nextDates,
+	small,
 	...rest
 }) => {
 	const {
@@ -222,7 +224,7 @@ const DatePeriodSelect: FC<DatePeriodSelect> = ({
 				style={{ width: '100%' }}
 				value={stagePeriodKey}
 				labelInValue={false}
-				placeholder={'Period'}
+				placeholder={'الفترة الزمنية'}
 				{...rest}
 				onChange={handleChange}
 				open={openCustom || undefined}
@@ -241,6 +243,7 @@ const DatePeriodSelect: FC<DatePeriodSelect> = ({
 								<Row gutter={[12, 12]} style={{ marginTop: '4px' }}>
 									<Col span={24}>
 										<RangePicker
+											size={small ? 'small' : undefined}
 											format={'D MMMM YYYY'}
 											value={range}
 											onClick={(e) => {

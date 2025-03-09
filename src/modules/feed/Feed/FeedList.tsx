@@ -18,7 +18,7 @@ const FeedList: FC<FeedListProps> = ({ params }) => {
 		skip,
 	});
 	return (
-		<div className='pb-140px'>
+		<div className='pb-140px max-w-400px mx-auto'>
 			{data?.data.map((issue) => (
 				<div className='mb-8px' key={issue.id}>
 					<FeedIssueCard issue={issue} onOpenDetails={() => {}}></FeedIssueCard>

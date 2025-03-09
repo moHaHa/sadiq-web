@@ -1,5 +1,5 @@
-import { Button } from 'antd';
-import Search from 'antd/es/transfer/search';
+import { Button, Input } from 'antd';
+import { useTheme } from 'antd-style';
 import { FC } from 'react';
 import CitySelect from '~/components/CitySelect/CitySelect';
 import GovernorateSelect from '~/components/GovernorateSelect/GovernorateSelect';
@@ -57,29 +57,50 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 		const newParams = { ...value, publish: checked };
 		onParamsChange?.(newParams);
 	};
+	const theme = useTheme();
 
+	console.log(value);
 	return (
-		<div className='bg-[#eee] overflow-hidden max-w-100vw relative  py-4px '>
-			<div className='no-bar-scroll flex overflow-x-scroll gap-8px w-full '>
+		<div className=' border-b-[#eee]  bg-[#ffffff44] backdrop-blur-4px overflow-hidden max-w-100vw relative   py-4px shadow-inner shadow-[0px_0px_6px_rgba(0,0,0,0.2)] '>
+			<div className='op-0 absolute in-vis top-0px left-0px z-1  h-full w-20px bg-gradient-to-r from-[#33333311] to-[#00000000]'></div>
+			<div className='no-bar-scroll  flex overflow-x-scroll gap-8px w-full '>
+				<div className='flex gap-4px ic'>
+					<div
+						onClick={() => onParamsChange?.({})}
+						className='i-line-md:filter hover:i-solar:close-circle-line-duotone'
+						style={{
+							color:
+								Object.values({ ...(value ?? {}) }).findIndex(
+									(e) => e != undefined && Boolean(Array.isArray(e) && e.length > 0)
+								) != -1
+									? theme.colorPrimary
+									: '#33333377',
+						}}
+					></div>
+				</div>
 				<Button
+					size='small'
 					type={value?.type?.includes('violation') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueTypeClick('violation')}
 				>
 					انتهاك
 				</Button>
 				<Button
+					size='small'
 					type={value?.type?.includes('corruption') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueTypeClick('corruption')}
 				>
 					فساد
 				</Button>
 				<Button
+					size='small'
 					type={value?.type?.includes('serviceIssue') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueTypeClick('serviceIssue')}
 				>
 					مشكلة خدمية
 				</Button>
 				<Button
+					size='small'
 					type={value?.type?.includes('suggestion') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueTypeClick('suggestion')}
 				>
@@ -90,6 +111,7 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 				</div>
 
 				<Button
+					size='small'
 					type={value?.status?.includes('open') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueStatusClick('open')}
 				>
@@ -97,6 +119,7 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 					<span>Open</span>
 				</Button>
 				<Button
+					size='small'
 					type={value?.status?.includes('in progress') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueStatusClick('in progress')}
 				>
@@ -104,6 +127,7 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 					<span>In Progress</span>
 				</Button>
 				<Button
+					size='small'
 					type={value?.status?.includes('closed') ? 'primary' : 'dashed'}
 					onClick={() => handleIssueStatusClick('closed')}
 				>
@@ -112,6 +136,7 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 				</Button>
 				<div className='min-w-200px'>
 					<GovernorateSelect
+						size='small'
 						value={value?.governorate}
 						onChange={(e) => handleGovernorateChange(e as string[])}
 						mode='multiple'
@@ -120,6 +145,7 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 				</div>
 				<div className='min-w-200px'>
 					<CitySelect
+						size='small'
 						value={value?.city}
 						onChange={(e) => handleCityChange(e as string[])}
 						mode='multiple'
@@ -128,6 +154,7 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 				</div>
 				<div className='min-w-130px'>
 					<DatePeriodSelect
+						size='small'
 						value={
 							value?.['createdAt[gte]'] && value?.['createdAt[lte]']
 								? { start: value?.['createdAt[gte]'], end: value?.['createdAt[lte]'] }
@@ -137,7 +164,12 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 					></DatePeriodSelect>
 				</div>
 				<div className='min-w-160px'>
-					<Search placeholder='بحث في وصف البلاغ' value={value?.text} onChange={handleSearchChange}></Search>
+					<Input
+						size='small'
+						placeholder='بحث في وصف البلاغ'
+						value={value?.text}
+						onChange={handleSearchChange}
+					></Input>
 				</div>
 				<div className='min-w-130px fcc'>
 					<Button.Group>
