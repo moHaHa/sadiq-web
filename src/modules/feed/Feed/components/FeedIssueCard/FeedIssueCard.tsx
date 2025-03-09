@@ -63,29 +63,31 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 			<div className='mt-12px'>
 				<ImageGallery media={media}></ImageGallery>
 			</div>
-			<div className='mt-14px f justify-between items-end px-12px '>
-				<div className='text-12px op50 '></div>
-				<div className='f flex-gap-8px  '>
-					<div
-						onClick={() => setOpen(!open)}
-						className='bg-light-5 w-40px h-24px fcc gap-4px cursor-pointer rounded-full'
-					>
-						<div className='text-12px op-70'>{issue.activityCount}</div>
-						<div className='i-solar:chat-round-linear'></div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<FeedIssueCardActivities issue={issue} open={open} issueId={issue.id}></FeedIssueCardActivities>
-			</div>
 			{mine?.role == 'admin' && (
-				<div className='pt-4px fcc'>
-					<IssuePublishToggle
-						onSuccess={(value) => setPublish(value)}
-						issueId={issue.id}
-						value={publish}
-					></IssuePublishToggle>
-				</div>
+				<>
+					<div className='mt-14px f justify-between items-end px-12px '>
+						<div className='text-12px op50 '></div>
+						<div className='f flex-gap-8px  '>
+							<div
+								onClick={() => setOpen(!open)}
+								className='bg-light-5 w-40px h-24px fcc gap-4px cursor-pointer rounded-full'
+							>
+								<div className='text-12px op-70'>{issue.activityCount}</div>
+								<div className='i-solar:chat-round-linear'></div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<FeedIssueCardActivities issue={issue} open={open} issueId={issue.id}></FeedIssueCardActivities>
+					</div>
+					<div className='pt-4px fcc'>
+						<IssuePublishToggle
+							onSuccess={(value) => setPublish(value)}
+							issueId={issue.id}
+							value={publish}
+						></IssuePublishToggle>
+					</div>
+				</>
 			)}
 
 			{/* <div className="flex flex-wrap gap-8px mt-4px">
