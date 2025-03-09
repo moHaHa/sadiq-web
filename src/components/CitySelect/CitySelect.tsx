@@ -69,7 +69,7 @@ const CitySelect: FC<CitySelectProps> = ({ value, onChange, valueWithName, init,
 	return (
 		<Select
 			popupMatchSelectWidth={false}
-			placeholder={'Citys'}
+			placeholder={'المدينة'}
 			loading={isLoading}
 			value={value}
 			showSearch

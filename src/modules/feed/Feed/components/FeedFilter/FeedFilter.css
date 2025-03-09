@@ -18,3 +18,12 @@
 	border-radius: 4px;
 	border: 2px solid white; /* Creates the light effect */
 }
+
+/* Add this to your FeedFilter.css or a global CSS file */
+.feed-filter-container {
+	transition: transform 0.3s ease-in-out;
+}
+
+.feed-filter-container.hidden {
+	transform: translateY(-100%);
+}

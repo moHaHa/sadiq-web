@@ -59,9 +59,12 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 	};
 	const theme = useTheme();
 
-	console.log(value);
 	return (
-		<div className=' border-b-[#eee]  bg-[#ffffff44] backdrop-blur-4px overflow-hidden max-w-100vw relative   py-4px shadow-inner shadow-[0px_0px_6px_rgba(0,0,0,0.2)] '>
+		<div
+			className={`feed-filter-container border-b-[#eee] bg-[#ffffff44] backdrop-blur-4px overflow-hidden max-w-100vw relative py-4px shadow-inner shadow-[0px_0px_6px_rgba(0,0,0,0.2)] ${
+				true ? '' : 'hidden'
+			}`}
+		>
 			<div className='op-0 absolute in-vis top-0px left-0px z-1  h-full w-20px bg-gradient-to-r from-[#33333311] to-[#00000000]'></div>
 			<div className='no-bar-scroll  flex overflow-x-scroll gap-8px w-full '>
 				<div className='flex gap-4px ic'>
