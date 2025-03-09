@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { usePagination } from '~/hooks/usePagination/usePagination';
 import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import { useIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
@@ -9,8 +10,10 @@ interface FeedMapProps {
 }
 
 const FeedMap: FC<FeedMapProps> = ({ params }) => {
+	const { mine } = useAppWrapperContext();
+
 	const { limit, pagination, setPage, skip } = usePagination({ pageSize: 100, initialPage: 1 });
-	const { data } = useIssuesQuery({
+	const { data } = useIssuesQuery(mine?.role !== 'admin', {
 		...params,
 		total: true,
 		limit,

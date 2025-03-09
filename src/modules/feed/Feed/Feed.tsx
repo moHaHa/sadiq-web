@@ -1,4 +1,4 @@
-import { Button, Popover } from 'antd';
+import { Button, Popover, Space } from 'antd';
 import { useTheme } from 'antd-style';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -49,9 +49,14 @@ const Feed: FC<FeedProps> = ({}) => {
 					تسجيل الخروج <div className='i-solar:logout-2-linear'></div>
 				</Button>
 			) : (
-				<Button type='link' onClick={() => navigate('/login')}>
-					Login
-				</Button>
+				<Space>
+					<Button type='link' onClick={() => navigate('/login')}>
+						تسجيل دخول
+					</Button>
+					<Button type='link' disabled onClick={() => navigate('/register')}>
+						إنشاء حساب
+					</Button>
+				</Space>
 			)}
 		</div>
 	);
@@ -86,9 +91,9 @@ const Feed: FC<FeedProps> = ({}) => {
 								</>
 							) : (
 								<>
-									<div className='font-sans text-12px'>
-										Login
-										<div className='i-solar:login-2-line-duotone ms-4px mb-2px text-16px text-base-primary-main'></div>
+									<div className='font-sans text-12px font-sans ic flex cursor-pointer'>
+										تسجيل دخول
+										<div className='mx-4px mt-4px i-solar:login-2-line-duotone ms-4px mb-2px text-16px text-base-primary-main'></div>
 									</div>
 								</>
 							)}
@@ -153,9 +158,11 @@ const Feed: FC<FeedProps> = ({}) => {
 					</div>
 				</div>
 				<div className='pt-50px'></div>
-				<div className='sticky top-50px z-999 '>
-					<FeedFilter value={params} onParamsChange={setParams}></FeedFilter>
-				</div>
+				{mine?.role == 'admin' && (
+					<div className='sticky top-50px z-999 '>
+						<FeedFilter value={params} onParamsChange={setParams}></FeedFilter>
+					</div>
+				)}
 				<div className=''>
 					{urlState?.value === 'map' ? (
 						<FeedMap params={params}></FeedMap>

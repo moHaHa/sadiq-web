@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Card, Form, Input, message, Typography } from 'antd';
 import { FC, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { publicViews } from '~/router';
 import { useLoginMutation } from '~/server/auth/useLoginMutation';
@@ -84,6 +84,11 @@ const Login: FC<LoginProps> = ({}) => {
 						>
 							تسجيل الدخول
 						</Button>
+					</Form.Item>
+					<Form.Item>
+						<Link className='font-sans underline text-base-primary-main' to={'/'}>
+							تصفح كـ مجهول <div className='i-solar:masks-outline'></div>
+						</Link>
 					</Form.Item>
 				</Form>
 			</Card>

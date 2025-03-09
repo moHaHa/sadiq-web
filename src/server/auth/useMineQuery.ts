@@ -1,6 +1,5 @@
 import { UseQueryOptions, useQuery } from 'react-query';
 import http, { HttpError } from '~/services/httpService';
-import { decryptData, encryptData } from '~/utils/encryption';
 import { TApp } from '../namespaces/app';
 
 export type TMine = {
@@ -11,23 +10,25 @@ export type TMine = {
 };
 
 export function useMinesQuery(options?: UseQueryOptions<TMine, HttpError>) {
+	console.log('throw mine');
+
 	const key = ['mine'];
 
-	// Fetch encrypted data from localStorage
-	const encryptedMineStr = localStorage.getItem('mine');
-	let mineData: TMine | null = null;
+	// // Fetch encrypted data from localStorage
+	// const encryptedMineStr = localStorage.getItem('mine');
+	// let mineData: TMine | null = null;
 
-	if (encryptedMineStr) {
-		try {
-			// Decrypt the data
-			const decryptedStr = decryptData(encryptedMineStr);
-			mineData = JSON.parse(decryptedStr) as TMine;
-		} catch (error) {
-			console.error('Failed to decrypt or parse data:', error);
-			// Reset the value in localStorage if decryption or parsing fails
-			localStorage.removeItem('mine');
-		}
-	}
+	// if (encryptedMineStr) {
+	// 	try {
+	// 		// Decrypt the data
+	// 		const decryptedStr = decryptData(encryptedMineStr);
+	// 		mineData = JSON.parse(decryptedStr) as TMine;
+	// 	} catch (error) {
+	// 		console.error('Failed to decrypt or parse data:', error);
+	// 		// Reset the value in localStorage if decryption or parsing fails
+	// 		localStorage.removeItem('mine');
+	// 	}
+	// }
 
 	return useQuery<TMine, HttpError>(
 		key,
@@ -36,16 +37,16 @@ export function useMinesQuery(options?: UseQueryOptions<TMine, HttpError>) {
 			const response = await http.get<TApp.IDataResponse<TMine>>('/users/mine');
 			const data = response.data;
 
-			// Encrypt and store the data in localStorage
-			const encryptedData = encryptData(JSON.stringify(data));
-			localStorage.setItem('mine', encryptedData);
+			// // Encrypt and store the data in localStorage
+			// const encryptedData = encryptData(JSON.stringify(data));
+			// localStorage.setItem('mine', encryptedData);
 
 			return data.data;
 		},
 		{
 			...options,
 			// Use the cached data if available and valid
-			initialData: mineData || undefined,
+			// initialData: mineData || undefined,
 		}
 	);
 }

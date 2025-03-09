@@ -1,5 +1,6 @@
-import { Pagination, Skeleton } from 'antd'; // Import Skeleton from Antd
+import { Empty, Pagination, Skeleton } from 'antd'; // Import Skeleton from Antd
 import { FC } from 'react';
+import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { usePagination } from '~/hooks/usePagination/usePagination';
 import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import { useIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
@@ -10,8 +11,10 @@ interface FeedListProps {
 }
 
 const FeedList: FC<FeedListProps> = ({ params }) => {
+	const { mine } = useAppWrapperContext();
+	console.log(mine);
 	const { limit, pagination, setPage, skip } = usePagination({ pageSize: 50, initialPage: 1 });
-	const { data, isLoading } = useIssuesQuery({
+	const { data, isLoading } = useIssuesQuery(mine?.role != 'admin', {
 		...params,
 		total: true,
 		limit,
@@ -41,9 +44,12 @@ const FeedList: FC<FeedListProps> = ({ params }) => {
 					</div>
 				))
 			)}
-			<div className='flex fcc mt-14px w-full' dir='ltr'>
-				<Pagination size='small' {...pagination} total={data?.totalRecords}></Pagination>
-			</div>
+			{data?.data.length == 0 && <Empty className='mt-14px' />}
+			{data?.data.length !== 0 && (
+				<div className='flex fcc mt-14px w-full' dir='ltr'>
+					<Pagination size='small' {...pagination} total={data?.totalRecords}></Pagination>
+				</div>
+			)}
 		</div>
 	);
 };

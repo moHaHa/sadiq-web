@@ -35,8 +35,8 @@ http.interceptors.response.use(
 		}
 		console.log('err.response', err.response);
 		if (err.response.data.message == 'Access denied. No token provided.') {
-			tokenService.logout();
-			window.open('/login', '_self');
+			// tokenService.logout();
+			// window.open('/login', '_self');
 			return Promise.reject(err);
 		}
 		if (err.status == 401 && err.response.data.message == 'Invalid token.') {

@@ -3,6 +3,8 @@ import { MessageInstance } from 'antd/es/message/interface';
 import useMessage from 'antd/es/message/useMessage';
 import { ModalStaticFunctions } from 'antd/es/modal/confirm';
 import { FC, ReactNode, createContext, useContext, useState } from 'react';
+import GlowingLogo from '~/modules/feed/Login/components/GlowingLogo';
+import GlowingText from '~/modules/feed/Login/components/GlowingText';
 import { TMine, useMinesQuery } from '~/server/auth/useMineQuery';
 import tokenService, { ITokenPayload } from '~/services/tokenService';
 // import { UserType } from '~/server';
@@ -25,13 +27,26 @@ export const AppWrapperContextProvider: FC<{ children?: ReactNode }> = ({ childr
 	const [role, setRole] = useState<UserType | null>(null);
 	const [modal, modalContext] = Modal.useModal();
 	const [message, messageContext] = useMessage();
-	const { data } = useMinesQuery({
-		enabled: !!user?.id,
+	const { data, isLoading } = useMinesQuery({
+		enabled: tokenService.getLocalAccessToken() != undefined,
 	});
+	if (isLoading) {
+		return (
+			<div className='fcc w-100v2 h-100vh flex-col'>
+				<div className='logo-up-down'>
+					<GlowingLogo></GlowingLogo>
+				</div>
+				<div className='my-4px'>
+					<GlowingText text='صديق، صوتك للتغير'></GlowingText>
+				</div>
+			</div>
+		);
+	}
+	console.log('mine', console.log('throw mine'));
 	return (
 		<AppWrapperContext.Provider
 			value={{
-				mine: data != undefined ? { ...data, role: 'admin' } : undefined,
+				mine: data != undefined ? data : undefined,
 				modal,
 				message,
 				user,
