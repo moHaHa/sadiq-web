@@ -61,25 +61,29 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 
 	return (
 		<div
-			className={`feed-filter-container border-b-[#eee] bg-[#ffffff44] backdrop-blur-4px overflow-hidden max-w-100vw relative py-4px shadow-inner shadow-[0px_0px_6px_rgba(0,0,0,0.2)] ${
+			className={`feed-filter-container  bg-[#ffffff55] backdrop-blur-4px overflow-hidden max-w-100vw relative py-4px shadow-inner shadow-[0px_0px_6px_rgba(0,0,0,0.2)] ${
 				true ? '' : 'hidden'
 			}`}
 		>
 			<div className='op-0 absolute in-vis top-0px left-0px z-1  h-full w-20px bg-gradient-to-r from-[#33333311] to-[#00000000]'></div>
 			<div className='no-bar-scroll  flex overflow-x-scroll gap-8px w-full '>
-				<div className='flex gap-4px ic'>
-					<div
-						onClick={() => onParamsChange?.({})}
-						className='i-line-md:filter hover:i-solar:close-circle-line-duotone'
-						style={{
-							color:
-								Object.values({ ...(value ?? {}) }).findIndex(
-									(e) => e != undefined && Boolean(Array.isArray(e) && e.length > 0)
-								) != -1
-									? theme.colorPrimary
-									: '#33333377',
-						}}
-					></div>
+				<div className='flex  ic px-4px'>
+					{(() => {
+						const keysCount = Object.values({ ...(value ?? {}) }).filter(
+							(e) => e != undefined && Boolean(Array.isArray(e) && e.length > 0)
+						).length;
+						const isApplied = keysCount > 0;
+
+						return (
+							<div
+								onClick={() => onParamsChange?.({})}
+								className='i-line-md:filter hover:i-solar:close-circle-line-duotone'
+								style={{
+									color: isApplied ? theme.colorPrimary : '#33333377',
+								}}
+							></div>
+						);
+					})()}
 				</div>
 				<Button
 					size='small'

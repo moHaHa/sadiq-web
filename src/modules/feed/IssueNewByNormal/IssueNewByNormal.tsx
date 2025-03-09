@@ -15,7 +15,7 @@ const IssueNewByNormal: FC<IssueNewByNormalProps> = ({}) => {
 		return <Navigate to={publicViews.Login.path + `?next=${publicViews.IssueNewByNormal.path}`} />;
 	}
 	return (
-		<div>
+		<div className='max-w-400px mx-auto'>
 			<div className='fixed left-0 right-0 top-0  bg-[#ffffff55] backdrop-blur-lg h-50px shadow-[0px_3px_6px_rgba(0,0,0,0.03)]'>
 				<div className='full flex ic px-4px justify-between'>
 					<div className='flex ic'>
