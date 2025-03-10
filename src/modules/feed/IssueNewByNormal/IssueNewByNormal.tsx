@@ -1,16 +1,19 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import logo from '~/assets/logo.svg';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import DsAddIssueForm from '~/modules/main/Dashboard/components/DashboardSidebar/components/DsAddIssue/DsAddIssueForm';
 import { publicViews } from '~/router';
+import { httpLog } from '~/server/other/httpLog';
 interface IssueNewByNormalProps {}
 
 const IssueNewByNormal: FC<IssueNewByNormalProps> = ({}) => {
 	const navigate = useNavigate();
 
 	const { user } = useAppWrapperContext();
-
+	useEffect(() => {
+		httpLog('New Issue');
+	}, []);
 	if (user === null) {
 		return <Navigate to={publicViews.Login.path + `?next=${publicViews.IssueNewByNormal.path}`} />;
 	}

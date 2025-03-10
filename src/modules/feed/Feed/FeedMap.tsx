@@ -1,8 +1,9 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { usePagination } from '~/hooks/usePagination/usePagination';
 import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import { useIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
+import { httpLog } from '~/server/other/httpLog';
 import FeedMapView from './components/FeedMapView/FeedMapView';
 
 interface FeedMapProps {
@@ -19,7 +20,9 @@ const FeedMap: FC<FeedMapProps> = ({ params }) => {
 		limit,
 		skip,
 	});
-	console.log('foo');
+	useEffect(() => {
+		httpLog('Feed Map');
+	}, []);
 	return (
 		<div className='h-[calc(100vh-50px)] h-[calc(100vh-50px)] w-100vw'>
 			<FeedMapView issues={data?.data ?? []}></FeedMapView>

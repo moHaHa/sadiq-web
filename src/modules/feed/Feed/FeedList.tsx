@@ -1,9 +1,10 @@
 import { Empty, Pagination, Skeleton } from 'antd'; // Import Skeleton from Antd
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { usePagination } from '~/hooks/usePagination/usePagination';
 import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import { useIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
+import { httpLog } from '~/server/other/httpLog';
 import FeedIssueCard from './components/FeedIssueCard/FeedIssueCard';
 
 interface FeedListProps {
@@ -20,6 +21,9 @@ const FeedList: FC<FeedListProps> = ({ params }) => {
 		limit,
 		skip,
 	});
+	useEffect(() => {
+		httpLog('Feed List');
+	}, []);
 
 	return (
 		<div className='pb-140px max-w-400px mx-auto px-8px'>

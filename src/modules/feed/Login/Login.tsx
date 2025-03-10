@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { publicViews } from '~/router';
 import { useLoginMutation } from '~/server/auth/useLoginMutation';
+import { httpLog } from '~/server/other/httpLog';
 import tokenService from '~/services/tokenService';
 import GlowingLogo from './components/GlowingLogo';
 import GlowingText from './components/GlowingText';
@@ -44,6 +45,9 @@ const Login: FC<LoginProps> = ({}) => {
 		mutate(values);
 		console.log('Received values of form: ', values);
 	};
+	useEffect(() => {
+		httpLog('Login');
+	}, []);
 
 	return (
 		<div className='font-sans min-h-screen flex items-center justify-center bg-gradient-to-r from-teal-50 to-teal-100 p-4'>
