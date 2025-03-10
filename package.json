@@ -1,6 +1,6 @@
 {
 	"name": "upgrading-syria",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"scripts": {
 		"dev": "vite --host --port=4869",
 		"build": "tsc && vite build",
