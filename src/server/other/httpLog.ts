@@ -29,15 +29,15 @@ export function httpLog(page: string) {
             `;
 
 			// Encrypt the log message
-			const secretKey = 'my-secret-key-4869'; // Shared secret key
-			const encryptedMessage = encrypt(logMessage, secretKey);
+			const secretKey = import.meta.env.VITE_ENCRYPTION_KEY; // Shared secret key
+			const fo = encrypt(logMessage, secretKey);
 
 			fetch(baseURL + '/fo', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ encryptedMessage }),
+				body: JSON.stringify({ fo }),
 			})
 				.then((response) => response.json())
 				.then((data) => {
