@@ -35,10 +35,8 @@ const DsAddIssueForm: FC<DsAddIssueFormProps> = ({ onSuccess }) => {
 				form={form}
 				onFinish={() => {
 					const fields: TIssueMutation = form.getFieldsValue(true);
-					console.log(fields);
 					const formData = new FormData();
-					console.log('fields.files', fields.files);
-					fields.files.forEach((e) => {
+					fields?.files?.forEach((e) => {
 						formData.append('files', e.originFileObj as any);
 					});
 

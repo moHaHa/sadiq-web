@@ -42,7 +42,6 @@ export const AppWrapperContextProvider: FC<{ children?: ReactNode }> = ({ childr
 			</div>
 		);
 	}
-	console.log('mine', console.log('throw mine'));
 	return (
 		<AppWrapperContext.Provider
 			value={{

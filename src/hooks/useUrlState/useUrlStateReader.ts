@@ -22,8 +22,6 @@ export function useUrlStateReader<T extends Record<string, Primitive | Primitive
 				const allValues = urlParams.getAll(key);
 
 				if (allValues.length > 1) {
-					console.log(key);
-					console.log(allValues);
 					// alert(`The parameter "${key}" has multiple values: ${allValues.join(", ")}`);
 				}
 

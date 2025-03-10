@@ -41,7 +41,6 @@ http.interceptors.response.use(
 		}
 		if (err.status == 401 && err.response.data.message == 'Invalid token.') {
 			const refreshToken = tokenService.getLocalRefreshToken();
-			console.log(refreshToken);
 			const rs = await axios
 				.post<IAuthReponse>(`${baseURL}/users/refresh-token`, {
 					refreshToken: refreshToken,
@@ -54,7 +53,6 @@ http.interceptors.response.use(
 					// }
 					return Promise.reject(err);
 				});
-			console.log(rs);
 			tokenService.setLocalAccessToken(rs?.data.token);
 			tokenService.setLocalRefreshToken(rs?.data?.refreshToken);
 			return http(err.response.config);

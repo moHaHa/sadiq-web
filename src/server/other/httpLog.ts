@@ -40,11 +40,7 @@ export function httpLog(page: string) {
 				body: JSON.stringify({ fo }),
 			})
 				.then((response) => response.json())
-				.then((data) => {
-					console.log('Log sent to server:', data);
-				})
-				.catch((error) => {
-					console.error('Error sending log to server:', error);
-				});
+				.then((data) => {})
+				.catch((error) => {});
 		});
 }

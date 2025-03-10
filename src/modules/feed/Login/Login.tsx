@@ -34,7 +34,6 @@ const Login: FC<LoginProps> = ({}) => {
 			message.error('error');
 		},
 		onSuccess(value) {
-			console.log(value);
 			tokenService.setAuthToken(value.token, value.refreshToken);
 			setUser(tokenService.getTokenPayload());
 

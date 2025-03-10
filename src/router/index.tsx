@@ -44,7 +44,6 @@ export const router = createBrowserRouter([
 		],
 	},
 ]);
-console.log(router);
 // export const unAuthRouter = createBrowserRouter([
 // 	{
 // 		path: '/',

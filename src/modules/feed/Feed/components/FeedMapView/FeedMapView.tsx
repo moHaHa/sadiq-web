@@ -55,7 +55,6 @@ const FeedMapView: FC<DashboardMapViewProps> = ({ issues }) => {
 			initializeMap();
 		}
 	}, [issues]);
-	console.log('map');
 
 	return (
 		<div

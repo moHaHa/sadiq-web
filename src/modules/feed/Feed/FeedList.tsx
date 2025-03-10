@@ -13,7 +13,6 @@ interface FeedListProps {
 
 const FeedList: FC<FeedListProps> = ({ params }) => {
 	const { mine } = useAppWrapperContext();
-	console.log(mine);
 	const { limit, pagination, setPage, skip } = usePagination({ pageSize: 50, initialPage: 1 });
 	const { data, isLoading } = useIssuesQuery(mine?.role != 'admin', {
 		...params,

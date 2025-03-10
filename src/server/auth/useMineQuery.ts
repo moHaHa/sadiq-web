@@ -10,8 +10,6 @@ export type TMine = {
 };
 
 export function useMinesQuery(options?: UseQueryOptions<TMine, HttpError>) {
-	console.log('throw mine');
-
 	const key = ['mine'];
 
 	// // Fetch encrypted data from localStorage
