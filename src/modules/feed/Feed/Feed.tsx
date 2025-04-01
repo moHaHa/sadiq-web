@@ -1,19 +1,16 @@
-import { Button, Popover, Space } from 'antd';
 import { useTheme } from 'antd-style';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '~/assets/logo.svg';
+import MainHeader from '~/components/MainHeader/MainHeader';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { useUrlState } from '~/hooks/useUrlState/useUrlState';
 import { publicViews } from '~/router';
 import { TIssueParams } from '~/server/issue/types/issue.params.type';
-import tokenService from '~/services/tokenService';
 import GlowingText from '../Login/components/GlowingText';
 import AiStars from './components/AiStarts';
 import BgAbs from './components/BgAbs';
 import BgGreen from './components/BgGreen';
 import FeedFilter from './components/FeedFilter/FeedFilter';
-import GlowingTextHeader from './components/GlowingTextHeader';
 import IssueButton from './components/IssueButton';
 import FeedList from './FeedList';
 import FeedMap from './FeedMap';
@@ -36,70 +33,12 @@ const Feed: FC<FeedProps> = ({}) => {
 	});
 	const navigate = useNavigate();
 	const theme = useTheme();
-	const popoverContent = (
-		<div>
-			{mine ? (
-				<Button
-					type='link'
-					onClick={() => {
-						tokenService.logout();
-						navigate('/login');
-					}}
-				>
-					تسجيل الخروج <div className='i-solar:logout-2-linear'></div>
-				</Button>
-			) : (
-				<Space>
-					<Button type='link' onClick={() => navigate('/login')}>
-						تسجيل دخول
-					</Button>
-					<Button type='link' disabled onClick={() => navigate('/register')}>
-						إنشاء حساب
-					</Button>
-				</Space>
-			)}
-		</div>
-	);
 
 	return (
 		<div className=''>
 			<div>
 				<BgGreen></BgGreen>
-				<div className='fixed z-999 left-0 right-0 top-0  bg-[#ffffff11] backdrop-blur-lg h-50px shadow-[0px_3px_6px_rgba(0,0,0,0.07)]'>
-					<div className='full flex ic justify-between px-4px'>
-						<div>
-							<div className='flex ic'>
-								<div className='w-40px flex flex-col ic'>
-									<img className='w-full' src={logo as any} alt='' />
-									<GlowingTextHeader text='صديق'></GlowingTextHeader>
-								</div>
-							</div>
-						</div>
-						<Popover placement='bottomRight' content={popoverContent} trigger='click'>
-							{mine?.role == 'admin' ? (
-								<>
-									<div className='font-sans text-12px'>
-										Admin Account
-										<div className='i-solar:shield-star-bold-duotone ms-4px mb-2px text-16px text-base-primary-main'></div>
-									</div>
-								</>
-							) : mine?.role == 'user' ? (
-								<>
-									<div className='font-sans text-12px w-30px h-30px border-1px border-solid border-[#33333333] fcc  rounded-full'>
-										<div className='i-solar:user-rounded-bold-duotone text-18px text-[#333]'></div>
-									</div>
-								</>
-							) : (
-								<>
-									<div className='font-sans text-12px font-sans ic flex cursor-pointer'>
-										تسجيل دخول
-										<div className='mx-4px mt-4px i-solar:login-2-line-duotone ms-4px mb-2px text-16px text-base-primary-main'></div>
-									</div>
-								</>
-							)}
-						</Popover>
-					</div>
-				</div>
+				<MainHeader></MainHeader>
 				<div className='fixed z-999 left-0 right-0 bottom-0 psm in-vis flex justify-center '>
 					<div className='vis h-58px w-320px bg-[#ffffffcc] shadow-[0px_3px_6px_rgba(0,0,0,0.03)] border-1px  backdrop-blur-2px rounded-12px  relative overflow-hidden '>
 						<BgAbs></BgAbs>

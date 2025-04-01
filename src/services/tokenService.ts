@@ -39,10 +39,16 @@ class TokenService {
 	setAuthToken(accessToken: string, refreshToken: string) {
 		localStorage.setItem('accessToken', accessToken);
 		localStorage.setItem('refreshToken', refreshToken);
+		setTimeout(() => {
+			window.location.reload();
+		}, 2000);
 	}
 	logout() {
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
+		setTimeout(() => {
+			window.location.reload();
+		}, 2000);
 	}
 }
 export default new TokenService();
