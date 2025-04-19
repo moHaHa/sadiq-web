@@ -19,7 +19,7 @@ console.log('Sadiq ', 'v' + version);
  *
  */
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<ConfigProvider theme={antdTheme}>
+	<ConfigProvider theme={antdTheme} direction='rtl'>
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider>
 				<AppWrapperContextProvider>
