@@ -32,6 +32,7 @@ const Geofences: FC<GeofencesProps> = ({}) => {
 						]}
 						pagination={{
 							...pagination,
+							total: data?.totalRecords,
 						}}
 					></Table>
 				</div>

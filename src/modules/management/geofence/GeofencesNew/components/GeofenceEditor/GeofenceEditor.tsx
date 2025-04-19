@@ -56,7 +56,7 @@ const GeofenceEditor: React.FC<GeofenceEditorProps> = ({ onChange }) => {
 
 	return (
 		<div>
-			<div id='map' style={{ height: '500px', width: '100%' }}></div>
+			<div id='map' style={{ height: '500px', width: '100%', direction: 'ltr' }}></div>
 		</div>
 	);
 };

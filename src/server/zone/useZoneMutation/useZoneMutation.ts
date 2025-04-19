@@ -4,7 +4,7 @@ import { TZoneMutation } from '../types';
 
 export function useZoneMutation(options?: UseMutationOptions<boolean, HttpError, TZoneMutation>) {
 	return useMutation<boolean, HttpError, TZoneMutation>(
-		(body) => http.post<boolean>('/zones', body).then(({ data }) => data),
+		(body) => http.post<boolean>('/zone', body).then(({ data }) => data),
 		options
 	);
 }

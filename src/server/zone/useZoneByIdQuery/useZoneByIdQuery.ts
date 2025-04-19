@@ -8,7 +8,7 @@ export function useZoneByIdQuery(id: string, options?: UseQueryOptions<TZoneItem
 	const key = [zoneQueryKey, id];
 	return useQuery<TZoneItem, HttpError>(
 		key,
-		() => http.get<TApp.IDataResponse<TZoneItem>>(`/zones/${id}`).then(({ data }) => data.data),
+		() => http.get<TApp.IDataResponse<TZoneItem>>(`/zone/${id}`).then(({ data }) => data.data),
 		options
 	);
 }
