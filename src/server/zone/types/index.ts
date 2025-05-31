@@ -9,6 +9,9 @@ export interface TZoneItem {
 	createdAt: string;
 	updatedAt: string;
 }
+export interface TZoneItemWithGeofence extends TZoneItem {
+	geofence: { id: string; name: string }[];
+}
 
 export interface TZoneMutation {
 	name: string;
@@ -21,4 +24,5 @@ export interface TZoneParams {
 
 export interface IZoneParams extends TApp.IParamsBase {
 	name?: string;
+	'include.geofence'?: boolean;
 }

@@ -11,7 +11,7 @@ const GeofenceEditor: React.FC<GeofenceEditorProps> = ({ onChange }) => {
 	const [geoJson, setGeoJson] = useState<any>(null);
 
 	useEffect(() => {
-		const map = L.map('map').setView([51.505, -0.09], 13);
+		const map = L.map('map').setView([33.505, 36.111], 13);
 
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; OpenStreetMap contributors',

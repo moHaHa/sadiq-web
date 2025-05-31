@@ -1,10 +1,11 @@
 import { Button, Table } from 'antd';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import DeleteManger from '~/components/DeleteManger/DeleteManger';
 import MainHeader from '~/components/MainHeader/MainHeader';
 import { usePagination } from '~/hooks/usePagination/usePagination';
 import { adminViews } from '~/router';
-import { useGeofencesQuery } from '~/server/geofence/useGeofencesQuery/useGeofencesQuery';
+import { invalidateGeofencesQuery, useGeofencesQuery } from '~/server/geofence/useGeofencesQuery/useGeofencesQuery';
 
 interface GeofencesProps {}
 
@@ -28,6 +29,18 @@ const Geofences: FC<GeofencesProps> = ({}) => {
 								title: 'Zone',
 								dataIndex: 'zone',
 								render: (_, record) => record.zone.name,
+							},
+							{
+								title: '',
+								dataIndex: 'actions',
+								render: (_, record) => (
+									<DeleteManger
+										entity='geofence'
+										id={record.id}
+										text='geofence'
+										invalidateQuery={invalidateGeofencesQuery}
+									/>
+								),
 							},
 						]}
 						pagination={{

@@ -8,17 +8,15 @@ export type TIssueSummary = {
 	type: IssueType;
 	location?: LocationTIssueItem;
 	activityCount: number;
-	governorate?: {
+	geofence: {
 		id: string;
 		name: string;
-		nameAr: string;
-	};
+	}[];
+	zone: {
+		id: string;
+		name: string;
+	}[];
 	files: FileTIssueSummary[];
-	city?: {
-		id: string;
-		name: string;
-		nameAr: string;
-	};
 	publish: boolean;
 	status: IssueStatus;
 	createdAt: string;

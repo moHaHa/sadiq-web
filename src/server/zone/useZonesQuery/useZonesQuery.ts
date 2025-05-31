@@ -5,12 +5,15 @@ import { TApp } from '~/server/namespaces/app';
 import http, { HttpError } from '~/services/httpService';
 import { IZoneParams, TZoneItem, zoneQueryKey } from '../types';
 
-export function useZonesQuery(params: IZoneParams, options?: UseQueryOptions<TApp.IDataResponse<TZoneItem[]>, HttpError>) {
+export function useZonesQuery<T = TZoneItem>(
+	params?: IZoneParams,
+	options?: UseQueryOptions<TApp.IDataResponse<T[]>, HttpError>
+) {
 	const queryString = objectToQueryString(params);
 	const key = [zoneQueryKey, queryString];
-	return useQuery<TApp.IDataResponse<TZoneItem[]>, HttpError>(
+	return useQuery<TApp.IDataResponse<T[]>, HttpError>(
 		key,
-		() => http.get<TApp.IDataResponse<TZoneItem[]>>('/zone?' + queryString).then(({ data }) => data),
+		() => http.get<TApp.IDataResponse<T[]>>('/zone?' + queryString).then(({ data }) => data),
 		options
 	);
 }

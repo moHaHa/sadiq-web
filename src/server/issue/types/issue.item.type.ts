@@ -7,16 +7,14 @@ export type TIssueItem = {
 	type: IssueType;
 	files?: string[];
 	location?: LocationTIssueItem;
-	governorate: {
+	geofence: {
 		id: string;
 		name: string;
-		nameAr: string;
-	};
-	city: {
+	}[];
+	zone: {
 		id: string;
 		name: string;
-		nameAr: string;
-	};
+	}[];
 	status: IssueStatus;
 	createdAt: string;
 };

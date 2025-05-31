@@ -44,9 +44,9 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 						<div className='me-sm'>{icon} </div>
 						<div>
 							<div className='flex ic'>
-								{issue.governorate?.nameAr ?? issue.governorate?.name}
-								<span className='mx-4px'>، </span>
-								{issue.city?.nameAr ?? issue.city?.name}
+								{/* {issue.zone.map((e) => e.name).join(', ')} */}
+								{/* <span className='mx-4px'>، </span> */}
+								{issue.geofence.map((e) => e.name).join(', ')}
 							</div>
 							<div className='text-12px op-35 mt-4px'>
 								<span dir='ltr'>{dayjs(issue.createdAt).fromNow()}</span>

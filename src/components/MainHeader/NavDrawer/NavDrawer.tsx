@@ -53,10 +53,13 @@ const NavDrawer: FC<MenuListProps> = ({}) => {
 						<Link to={'/'}>الرئيسية</Link>
 					</List.Item>
 					<List.Item>
-						<Link to={'/zones'}>المحافظات</Link>
+						<Link to={adminViews.GeofencesMapPage.path}>خرطية المناطق الجغرافية</Link>
 					</List.Item>
 					<List.Item>
-						<Link to={adminViews.Geofences.path}>المناطق الجغرافية</Link>
+						<Link to={adminViews.Zones.path}>قوائم المناطق الائدارية</Link>
+					</List.Item>
+					<List.Item>
+						<Link to={adminViews.Geofences.path}>قوائم المناطق الجغرافية</Link>
 					</List.Item>
 				</List>
 			</Drawer>
