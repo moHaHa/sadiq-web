@@ -1,6 +1,7 @@
+import { EditOutlined } from '@ant-design/icons';
 import { Button, Table } from 'antd';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DeleteManger from '~/components/DeleteManger/DeleteManger';
 import MainHeader from '~/components/MainHeader/MainHeader';
 import { usePagination } from '~/hooks/usePagination/usePagination';
@@ -12,6 +13,7 @@ interface GeofencesProps {}
 const Geofences: FC<GeofencesProps> = ({}) => {
 	const { skip, limit, pagination } = usePagination();
 	const { data } = useGeofencesQuery({ total: true, skip, limit });
+	const navigate = useNavigate();
 	return (
 		<>
 			<div>
@@ -34,12 +36,21 @@ const Geofences: FC<GeofencesProps> = ({}) => {
 								title: '',
 								dataIndex: 'actions',
 								render: (_, record) => (
-									<DeleteManger
-										entity='geofence'
-										id={record.id}
-										text='geofence'
-										invalidateQuery={invalidateGeofencesQuery}
-									/>
+									<div className='flex gap-12px'>
+										<Button
+											onClick={() => {
+												navigate(adminViews.GeofenceByIdEdit.path(record.id));
+											}}
+											icon={<EditOutlined></EditOutlined>}
+										></Button>
+
+										<DeleteManger
+											entity='geofence'
+											id={record.id}
+											text='geofence'
+											invalidateQuery={invalidateGeofencesQuery}
+										/>
+									</div>
 								),
 							},
 						]}

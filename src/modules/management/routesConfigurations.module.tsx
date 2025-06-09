@@ -1,3 +1,4 @@
+import GeofenceByIdEdit from './geofence/GeofenceByIdEdit/GeofenceByIdEdit';
 import Geofences from './geofence/Geofences/Geofences';
 import GeofencesMapPage from './geofence/GeofencesMapPage/GeofencesMapPage';
 import GeofencesNew from './geofence/GeofencesNew/GeofencesNew';
@@ -16,6 +17,12 @@ export const managementRoutesConfigurations = {
 	GeofencesNew: {
 		path: `${managementRouteKey}/geofences/new`,
 		component: <GeofencesNew />,
+		layout: 'full',
+	},
+	GeofenceByIdEdit: {
+		path: (id: string) => `${managementRouteKey}/geofences/${id}`,
+		funcDefaultArgs: [':id'],
+		component: <GeofenceByIdEdit />,
 		layout: 'full',
 	},
 	GeofencesMapPage: {

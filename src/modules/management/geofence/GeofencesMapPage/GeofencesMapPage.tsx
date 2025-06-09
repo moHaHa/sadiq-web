@@ -29,7 +29,7 @@ const GeofencesMapPage: FC<GeofencesMapPageProps> = ({}) => {
 								>
 									<div className='px-4 py-3 font-medium text-lg text-gray-800 dark:text-gray-100 flex items-center gap-2'>
 										<div className=' h-3 rounded-full' style={{ backgroundColor: zone.color }}></div>
-										إدارة {zone.name}
+										{zone.name}
 									</div>
 									<div className='px-6 pb-3 '>
 										{zone.geofence.map((g) => (
