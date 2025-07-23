@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import MainHeader from '~/components/MainHeader/MainHeader';
-import { usePagination } from '~/hooks/usePagination/usePagination';
 import { useGeofencesQuery } from '~/server/geofence/useGeofencesQuery/useGeofencesQuery';
 import { TZoneItemWithGeofence } from '~/server/zone/types';
 import { useZonesQuery } from '~/server/zone/useZonesQuery/useZonesQuery';
@@ -9,8 +8,8 @@ import GeofencesMapView from './components/GeofencesMapView';
 interface GeofencesMapPageProps {}
 
 const GeofencesMapPage: FC<GeofencesMapPageProps> = ({}) => {
-	const { skip, limit, pagination } = usePagination();
-	const { data } = useGeofencesQuery({ total: true, skip, limit });
+	// const { skip, limit, pagination } = usePagination();
+	const { data } = useGeofencesQuery({ total: true });
 	const { data: zones } = useZonesQuery<TZoneItemWithGeofence>({ 'include.geofence': true });
 
 	return (
