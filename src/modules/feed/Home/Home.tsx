@@ -1,12 +1,16 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useIssueCountsQuery } from '~/server/issue/useIssueCountsQuery/useIssueCountsQuery';
+import { httpLog } from '~/server/other/httpLog';
 import SyrianArabRepublic from './components/SyrianArabRepublic';
 import SyrianLogo from './components/SyrianLogo';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = ({}) => {
+	useEffect(() => {
+		httpLog('Home');
+	}, []);
 	const { data } = useIssueCountsQuery();
 	return (
 		<>

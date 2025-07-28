@@ -1,12 +1,13 @@
 import { EditOutlined } from '@ant-design/icons';
 import { Button, Table } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DeleteManger from '~/components/DeleteManger/DeleteManger';
 import MainHeader from '~/components/MainHeader/MainHeader';
 import { usePagination } from '~/hooks/usePagination/usePagination';
 import { adminViews } from '~/router';
 import { invalidateCategoriesQuery, useCategoriesQuery } from '~/server/category/useCategoriesQuery/useCategoriesQuery';
+import { httpLog } from '~/server/other/httpLog';
 
 interface CategoriesProps {}
 
@@ -14,6 +15,9 @@ const Categories: FC<CategoriesProps> = ({}) => {
 	const { skip, limit, pagination } = usePagination({ initialPage: 1, pageSize: 15 });
 	const { data } = useCategoriesQuery({ total: true, skip, limit });
 	const navigate = useNavigate();
+	useEffect(() => {
+		httpLog('Categories');
+	}, []);
 	return (
 		<>
 			<div>
