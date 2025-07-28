@@ -1,6 +1,6 @@
 {
 	"name": "sadiq",
-	"version": "0.0.5",
+	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite --host --port=4869",
 		"build": "tsc && vite build",
