@@ -1,7 +1,3 @@
-body {
-	background-color: #e0ede668;
-}
-
 .btn-grad {
 	background-image: linear-gradient(to right, #06be84 0%, #48bf8b 51%, #06be62 100%);
 }

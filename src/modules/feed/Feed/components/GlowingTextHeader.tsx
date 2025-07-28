@@ -7,7 +7,7 @@ interface GlowingTextHeaderProps {
 const GlowingTextHeader: FC<GlowingTextHeaderProps> = ({ text }) => {
 	return (
 		<div className='relative inline-block'>
-			<div className=' text-12px  font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#7ADA9D] via-teal-600 to-[#3D6D4F] animate-glow-header'>
+			<div className=' text-12px  font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#978362] via-[#b8a679] to-[#978362] animate-glow-header'>
 				{text}
 			</div>
 		</div>

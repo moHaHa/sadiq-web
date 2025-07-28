@@ -2,7 +2,7 @@ import { Button, Form, message } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import { FC, useState } from 'react';
-import AddIssueIssueTypeSelect from '~/modules/main/components/AddIssueIssueTypeSelect';
+import AddIssueIssueCategorySelect from '~/modules/main/components/AddIssueIssueCategorySelect';
 import FilesAdder from '~/modules/main/components/FilesAdder/FilesAdder';
 import MapLocationSelect from '~/modules/main/components/MapLocationSelect/MapLocationSelect';
 import { TIssueMutation } from '~/server/issue/types/issue.mutation.type';
@@ -18,17 +18,17 @@ const DsAddIssueForm: FC<DsAddIssueFormProps> = ({ onSuccess }) => {
 	const { mutate, isLoading } = useIssueMutation({
 		onSuccess() {
 			onSuccess();
-			message.success('تم ارسال البلاغ بنجاح');
+			message.success('تم ارسال الشكوى بنجاح');
 		},
 	});
 	return (
 		<div className='pt-14px'>
 			<div className='flex flex-gap-4px mb-sm'>
-				<div onClick={() => setStep(1)} className='bg-base-primary-main h-6px flex-1 rounded-full'></div>
+				<div onClick={() => setStep(1)} className='bg-[#084239] h-6px flex-1 rounded-full'></div>
 				{step == 1 ? (
-					<div className='bg-base-primary-main op-20 h-6px flex-1 rounded-full'></div>
+					<div className='bg-[#084239] op-20 h-6px flex-1 rounded-full'></div>
 				) : (
-					<div className='bg-base-primary-main h-6px flex-1 rounded-full'></div>
+					<div className='bg-[#084239] h-6px flex-1 rounded-full'></div>
 				)}
 			</div>
 			<Form
@@ -52,10 +52,10 @@ const DsAddIssueForm: FC<DsAddIssueFormProps> = ({ onSuccess }) => {
 				<div className=' text-black font-sans'>
 					{step == 1 ? (
 						<>
-							<div className='mb-8px text-18px'>نوع البلاغ </div>
+							<div className='mb-8px text-18px'>نوع الشكوى </div>
 							<div className='flex gap-8px flex-wrap mb-8px'>
-								<Form.Item noStyle name={'type'}>
-									<AddIssueIssueTypeSelect></AddIssueIssueTypeSelect>
+								<Form.Item noStyle name={'category'}>
+									<AddIssueIssueCategorySelect></AddIssueIssueCategorySelect>
 								</Form.Item>
 							</div>
 							<div className='border-b-1px border-b-solid op-20 my-12px'></div>

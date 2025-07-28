@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { default as FullLayout } from '~/layouts/DefaultLayout/DefaultLayout';
+import FullV2Layout from '~/layouts/FullV2Layout/FullV2Layout';
 import HomeLayout from '~/layouts/HomeLayout/HomeLayout';
 import ProtectedForAdminRole from '~/layouts/ProtectedForAdminRole/ProtectedForAdminRole';
 import { feedRoutesConfigurations } from '~/modules/feed/routesConfigurations.module';
@@ -29,6 +30,12 @@ const authLayouts: LayoutRouteConfiguration[] = [
 		path: '/',
 		type: 'full',
 		component: <FullLayout />,
+		children: [],
+	},
+	{
+		path: '/',
+		type: 'full-v2',
+		component: <FullV2Layout />,
 		children: [],
 	},
 ];

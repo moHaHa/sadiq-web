@@ -1,10 +1,16 @@
 import Feed from './Feed/Feed';
+import Home from './Home/Home';
 import IssueNewByNormal from './IssueNewByNormal/IssueNewByNormal';
 import Login from './Login/Login';
 
 export const feedRoutesConfigurations = {
+	Home: {
+		path: '',
+		component: <Home />,
+		layout: 'home',
+	},
 	Feed: {
-		path: '/',
+		path: '/feed',
 		component: <Feed />,
 		layout: 'home',
 	},
@@ -16,6 +22,6 @@ export const feedRoutesConfigurations = {
 	Login: {
 		path: '/login',
 		component: <Login />,
-		layout: 'full',
+		layout: 'full-v2',
 	},
 } as const;

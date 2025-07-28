@@ -70,7 +70,7 @@ const ZoneSelect: FC<ZoneSelectProps> = ({ value, onChange, valueWithName, init,
 	return (
 		<Select
 			popupMatchSelectWidth={false}
-			placeholder={'Zone'}
+			placeholder={'المنطقة الإدارية'}
 			loading={isLoading}
 			value={value}
 			showSearch

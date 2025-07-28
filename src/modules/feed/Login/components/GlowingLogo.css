@@ -1,12 +1,12 @@
 @keyframes glow {
 	0% {
-		filter: drop-shadow(0 0 5px rgba(122, 218, 157, 0.5)) drop-shadow(0 0 10px rgba(122, 218, 157, 0.3));
+		filter: drop-shadow(0 0 5px rgba(184, 166, 121, 0.5)) drop-shadow(0 0 10px rgba(184, 166, 121, 0.3));
 	}
 	50% {
-		filter: drop-shadow(0 0 10px rgba(168, 230, 199, 0.5)) drop-shadow(0 0 15px rgba(168, 230, 199, 0.3));
+		filter: drop-shadow(0 0 10px rgba(239, 234, 223, 0.5)) drop-shadow(0 0 15px rgba(151, 131, 98, 0.4));
 	}
 	100% {
-		filter: drop-shadow(0 0 5px rgba(122, 218, 157, 0.5)) drop-shadow(0 0 10px rgba(122, 218, 157, 0.3));
+		filter: drop-shadow(0 0 5px rgba(184, 166, 121, 0.5)) drop-shadow(0 0 10px rgba(184, 166, 121, 0.3));
 	}
 }
 

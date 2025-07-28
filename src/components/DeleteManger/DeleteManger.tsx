@@ -8,9 +8,10 @@ export interface DeleteMangerProps {
 	text: string;
 	invalidateQuery?: () => void;
 	btnText?: string;
+	buttonProps?: any;
 }
 
-const DeleteManger = ({ id, entity, text, invalidateQuery, btnText }: DeleteMangerProps) => {
+const DeleteManger = ({ id, entity, text, invalidateQuery, btnText, buttonProps }: DeleteMangerProps) => {
 	const [modal, contextHolder] = Modal.useModal();
 
 	const { mutate, isLoading } = useDeleteByRecordIdMutation(id, entity, {
@@ -39,7 +40,7 @@ const DeleteManger = ({ id, entity, text, invalidateQuery, btnText }: DeleteMang
 	return (
 		<div className='inline-flex'>
 			{contextHolder}
-			<Button loading={isLoading} danger icon={<DeleteOutlined />} onClick={handelDeleteItem}>
+			<Button {...buttonProps} loading={isLoading} danger icon={<DeleteOutlined />} onClick={handelDeleteItem}>
 				{btnText}
 			</Button>
 		</div>

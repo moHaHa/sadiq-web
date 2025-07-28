@@ -47,7 +47,7 @@ const FeedList: FC<FeedListProps> = ({ params }) => {
 					</div>
 				))
 			)}
-			{data?.data.length == 0 && <Empty className='mt-14px' />}
+			{data?.data.length == 0 && <Empty description='لا يوجد شكاوى' className='mt-14px' />}
 			{data?.data.length !== 0 && (
 				<div className='flex fcc mt-14px w-full' dir='ltr'>
 					<Pagination size='small' {...pagination} total={data?.totalRecords}></Pagination>

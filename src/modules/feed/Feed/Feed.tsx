@@ -9,7 +9,6 @@ import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import GlowingText from '../Login/components/GlowingText';
 import AiStars from './components/AiStarts';
 import BgAbs from './components/BgAbs';
-import BgGreen from './components/BgGreen';
 import FeedFilter from './components/FeedFilter/FeedFilter';
 import IssueButton from './components/IssueButton';
 import FeedList from './FeedList';
@@ -35,9 +34,9 @@ const Feed: FC<FeedProps> = ({}) => {
 	const theme = useTheme();
 
 	return (
-		<div className=''>
+		<div className='bg-[#eeeadf]'>
 			<div>
-				<BgGreen></BgGreen>
+				{/* <BgGreen></BgGreen> */}
 				<MainHeader></MainHeader>
 				<div className='fixed z-999 left-0 right-0 bottom-0 psm in-vis flex justify-center '>
 					<div className='vis h-58px w-320px bg-[#ffffffcc] shadow-[0px_3px_6px_rgba(0,0,0,0.03)] border-1px  backdrop-blur-2px rounded-12px  relative overflow-hidden '>

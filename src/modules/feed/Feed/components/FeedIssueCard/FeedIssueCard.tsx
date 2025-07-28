@@ -3,11 +3,13 @@ import { message } from 'antd';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FC, useState } from 'react';
+import DeleteManger from '~/components/DeleteManger/DeleteManger';
 import ImageGallery from '~/components/ImageGallery/ImageGallery';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { getIssueStatusConfig } from '~/server/helpers/getIssueStatusConfig';
 import { getIssueTypeConfig } from '~/server/helpers/getIssueTypeConfig';
 import { TIssueSummary } from '~/server/issue/types/issue.summary.type';
+import { invalidateIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
 import FeedIssueCardActivities from './components/FeedIssueCardActivities/FeedIssueCardActivities';
 import IssuePublishToggle from './components/IssuePublishToggle/IssuePublishToggle';
 dayjs.extend(relativeTime);
@@ -80,12 +82,19 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 					<div>
 						<FeedIssueCardActivities issue={issue} open={open} issueId={issue.id}></FeedIssueCardActivities>
 					</div>
-					<div className='pt-4px fcc'>
+					<div className='pt-4px fcc gap-12px'>
 						<IssuePublishToggle
 							onSuccess={(value) => setPublish(value)}
 							issueId={issue.id}
 							value={publish}
 						></IssuePublishToggle>
+						<DeleteManger
+							invalidateQuery={invalidateIssuesQuery}
+							buttonProps={{ size: 'small' }}
+							entity='issues'
+							id={issue.id}
+							text='issue'
+						></DeleteManger>
 					</div>
 				</>
 			)}

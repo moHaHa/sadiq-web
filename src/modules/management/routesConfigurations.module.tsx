@@ -1,3 +1,6 @@
+import Categories from './category/Categories/Categories';
+import CategoryByIdEdit from './category/CategoryByIdEdit/CategoryByIdEdit';
+import CategoryNew from './category/CategoryNew/CategoryNew';
 import GeofenceByIdEdit from './geofence/GeofenceByIdEdit/GeofenceByIdEdit';
 import Geofences from './geofence/Geofences/Geofences';
 import GeofencesMapPage from './geofence/GeofencesMapPage/GeofencesMapPage';
@@ -44,6 +47,22 @@ export const managementRoutesConfigurations = {
 		path: (id: string) => `${managementRouteKey}/zones/${id}`,
 		funcDefaultArgs: [':id'],
 		component: <ZoneByIdEdit />,
+		layout: 'full',
+	},
+	Categories: {
+		path: `${managementRouteKey}/categories`,
+		component: <Categories />,
+		layout: 'full',
+	},
+	CategoryNew: {
+		path: `${managementRouteKey}/categories/new`,
+		component: <CategoryNew />,
+		layout: 'full',
+	},
+	CategoryByIdEdit: {
+		path: (id: string) => `${managementRouteKey}/categories/${id}`,
+		funcDefaultArgs: [':id'],
+		component: <CategoryByIdEdit />,
 		layout: 'full',
 	},
 } as const;

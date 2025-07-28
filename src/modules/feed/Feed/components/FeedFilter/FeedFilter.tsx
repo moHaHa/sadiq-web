@@ -1,9 +1,10 @@
 import { Button, Input } from 'antd';
 import { useTheme } from 'antd-style';
 import { FC } from 'react';
-import CitySelect from '~/components/CitySelect/CitySelect';
-import GovernorateSelect from '~/components/GovernorateSelect/GovernorateSelect';
+import GeofenceSelect from '~/components/GeofenceSelect/GeofenceSelect';
 import DatePeriodSelect from '~/components/SelectStartTimePeriod/DatePeriodSelect';
+import ZoneSelect from '~/components/ZoneSelect/ZoneSelect';
+import { useCategoriesQuery } from '~/server/category/useCategoriesQuery/useCategoriesQuery';
 import { TIssueParams } from '~/server/issue/types/issue.params.type';
 import { IssueStatus } from '~/server/types/issueStatus.type';
 import { IssueType } from '~/server/types/issueType.type';
@@ -23,6 +24,14 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 		const newParams = { ...value, type: newTypes };
 		onParamsChange?.(newParams); // Trigger callback
 	};
+	const handleIssueCategoryClick = (clickedValue: string) => {
+		const newTypes = value?.category?.includes(clickedValue)
+			? value.category?.filter((v) => v !== clickedValue)
+			: [...(value?.category ?? []), clickedValue];
+
+		const newParams = { ...value, category: newTypes };
+		onParamsChange?.(newParams);
+	};
 
 	const handleIssueStatusClick = (clickedValue: IssueStatus) => {
 		const newStatuses = value?.status?.includes(clickedValue)
@@ -33,8 +42,16 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 		onParamsChange?.(newParams); // Trigger callback
 	};
 
-	const handleGovernorateChange = (selectedGovernorates: string[]) => {
-		const newParams = { ...value, governorate: selectedGovernorates };
+	// const handleGovernorateChange = (selectedGovernorates: string[]) => {
+	// 	const newParams = { ...value, governorate: selectedGovernorates };
+	// 	onParamsChange?.(newParams);
+	// };
+	const handleZoneChange = (selectedZones: string[]) => {
+		const newParams = { ...value, zone: selectedZones };
+		onParamsChange?.(newParams);
+	};
+	const handleGeofenceChange = (selectedGeofences: string[]) => {
+		const newParams = { ...value, geofence: selectedGeofences };
 		onParamsChange?.(newParams);
 	};
 
@@ -58,6 +75,8 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 		onParamsChange?.(newParams);
 	};
 	const theme = useTheme();
+
+	const { data } = useCategoriesQuery({ limit: 100, total: true, skip: 0 });
 
 	return (
 		<div
@@ -85,34 +104,16 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 						);
 					})()}
 				</div>
-				<Button
-					size='small'
-					type={value?.type?.includes('violation') ? 'primary' : 'dashed'}
-					onClick={() => handleIssueTypeClick('violation')}
-				>
-					انتهاك
-				</Button>
-				<Button
-					size='small'
-					type={value?.type?.includes('corruption') ? 'primary' : 'dashed'}
-					onClick={() => handleIssueTypeClick('corruption')}
-				>
-					فساد
-				</Button>
-				<Button
-					size='small'
-					type={value?.type?.includes('serviceIssue') ? 'primary' : 'dashed'}
-					onClick={() => handleIssueTypeClick('serviceIssue')}
-				>
-					مشكلة خدمية
-				</Button>
-				<Button
-					size='small'
-					type={value?.type?.includes('suggestion') ? 'primary' : 'dashed'}
-					onClick={() => handleIssueTypeClick('suggestion')}
-				>
-					مقترح
-				</Button>
+
+				{data?.data.map((e) => (
+					<Button
+						size='small'
+						type={value?.category?.includes(e.id) ? 'primary' : 'dashed'}
+						onClick={() => handleIssueCategoryClick(e.id)}
+					>
+						{e.name}
+					</Button>
+				))}
 				<div className='fcc'>
 					<div className='h-20px w-1px bg-[#33333344] '></div>
 				</div>
@@ -142,22 +143,23 @@ const FeedFilter: FC<FeedFilterProps> = ({ onParamsChange, value }) => {
 					<span>Closed</span>
 				</Button>
 				<div className='min-w-200px'>
-					<GovernorateSelect
+					<ZoneSelect
 						size='small'
-						value={value?.governorate}
-						onChange={(e) => handleGovernorateChange(e as string[])}
+						value={value?.zone}
+						onChange={(e) => handleZoneChange(e as string[])}
 						mode='multiple'
 						style={{ width: '100%' }}
-					></GovernorateSelect>
+					></ZoneSelect>
 				</div>
+
 				<div className='min-w-200px'>
-					<CitySelect
+					<GeofenceSelect
 						size='small'
-						value={value?.city}
-						onChange={(e) => handleCityChange(e as string[])}
+						value={value?.geofence}
+						onChange={(e) => handleGeofenceChange(e as string[])}
 						mode='multiple'
 						style={{ width: '100%' }}
-					></CitySelect>
+					></GeofenceSelect>
 				</div>
 				<div className='min-w-130px'>
 					<DatePeriodSelect

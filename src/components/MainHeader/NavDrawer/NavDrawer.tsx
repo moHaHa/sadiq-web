@@ -61,6 +61,9 @@ const NavDrawer: FC<MenuListProps> = ({}) => {
 					<List.Item>
 						<Link to={adminViews.Geofences.path}>قوائم المناطق الجغرافية</Link>
 					</List.Item>
+					<List.Item>
+						<Link to={adminViews.Categories.path}>تصنيفات الشكوى</Link>
+					</List.Item>
 				</List>
 			</Drawer>
 			<Button onClick={() => setOpen(true)} size='small' type='text' icon={<MenuOutlined></MenuOutlined>}></Button>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './AnWord.css'; // Import the CSS file
 
 const AnWord: React.FC = () => {
-	const words = ['إنتهاك', 'فساد', 'خدمات', 'اقتراح'];
+	const words = ['اسفلت', 'حفرة', 'لافتات', 'نفايات', 'ارصفة', 'مرافق', 'جدار'];
 	const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
 	useEffect(() => {

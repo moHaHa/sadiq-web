@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'ZagelArabic';
+	src: url('/fonts/ZagelArabicITF-Regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ZagelArabic';
+	src: url('/fonts/ZagelArabicITF-Medium.otf') format('opentype');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'ZagelArabic';
+	src: url('/fonts/ZagelArabicITF-Bold.otf') format('opentype');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'ZagelArabic';
+	src: url('/fonts/ZagelArabicITF-ExtraBold.otf') format('opentype');
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: 'ZagelArabic';
+	src: url('/fonts/ZagelArabicITF-Light.otf') format('opentype');
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: 'ZagelArabicVariable';
+	src: url('/fonts/ZagelArabicITF Variable.ttf') format('truetype');
+	font-weight: 100 900;
+}

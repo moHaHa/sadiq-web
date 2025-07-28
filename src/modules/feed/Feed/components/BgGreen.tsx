@@ -21,8 +21,8 @@ const BgGreen: FC<BgGreenProps> = ({}) => {
 							y2='161.759'
 							gradientUnits='userSpaceOnUse'
 						>
-							<stop stop-color='#8FE5E3' />
-							<stop offset='1' stop-color='#59df98' />
+							<stop stop-color='#efeadf' />
+							<stop offset='1' stop-color='#efeadf' />
 						</linearGradient>
 					</defs>
 				</svg>

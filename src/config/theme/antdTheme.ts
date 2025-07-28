@@ -6,7 +6,7 @@ const { 'base-primary-main': colorPrimary } = kdsThemes.light.colors;
 export const antdTheme: ThemeConfig = {
 	token: {
 		colorPrimary, // Primary color for the theme
-		colorInfo: '#3bd47d',
+		colorInfo: '#084239',
 		borderRadius: 10,
 	},
 };

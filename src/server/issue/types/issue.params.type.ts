@@ -4,6 +4,7 @@ import { IssueType } from '~/server/types/issueType.type';
 
 interface IIssueParams extends TApp.IParamsBase {
 	type?: IssueType[];
+	category?: string[];
 	status?: IssueStatus[];
 	'createdAt[gte]'?: string;
 	'createdAt[lte]'?: string;
@@ -11,6 +12,8 @@ interface IIssueParams extends TApp.IParamsBase {
 	governorate?: string[];
 	text?: string;
 	publish?: boolean;
+	zone?: string[];
+	geofence?: string[];
 }
 
 export type TIssueParams = IIssueParams;

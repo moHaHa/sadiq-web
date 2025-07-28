@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 
-export type PageLayout = 'full' | 'home';
+export type PageLayout = 'full' | 'home' | 'full-v2';
 
 export type PageRouteConfiguration = {
 	path: string | ((...args: any[]) => string);
