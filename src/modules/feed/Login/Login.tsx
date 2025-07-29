@@ -1,6 +1,6 @@
 import { Card, message, Typography } from 'antd';
 import { FC, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { publicViews } from '~/router';
 import { useLoginMutation } from '~/server/auth/useLoginMutation';
@@ -54,26 +54,32 @@ const Login: FC = () => {
 					<SyrianArabRepublic></SyrianArabRepublic>
 				</div>
 				<div></div>
-				<div></div>
+				<div>
+					<Link to={'/'}>
+						<div className='i-solar:arrow-left-outline text-white text-22px'></div>
+					</Link>
+				</div>
 			</div>
 			<div className='flex justify-center mt-40px'>
 				<div className='flex flex-col lg:flex-row ic  '>
-					<div className='text-white text-46px font-600  ' style={{ fontFamily: 'ZagelArabic' }}>
+					<div className='text-white text-36px md:text-46px font-600  ' style={{ fontFamily: 'ZagelArabic' }}>
 						محافظة دمشق
 					</div>
 
 					<div className='px-30px'>
-						<div className='w-200px logo-up-down '>
+						<div className='w-120px py-42px md:w-200px logo-up-down '>
 							<SyrianLogo></SyrianLogo>
 						</div>
 					</div>
-					<div className='text-white text-36px font-400 lg:pe-63px ' style={{ fontFamily: 'ZagelArabic' }}>
+					<div
+						className='text-white text-30px md:text-36px font-400 lg:pe-63px '
+						style={{ fontFamily: 'ZagelArabic' }}
+					>
 						<div className='text-center'>مديرية الصيانة</div>
 						<div className='text-center'>قسم الشكاوى</div>
 					</div>
 				</div>
 			</div>
-
 			<div className='font-sans flex items-center justify-center p-4'>
 				<Card loading={isLoading} className='min-w-300px '>
 					<div className='text-center text-32px' style={{ fontFamily: 'ZagelArabic' }}>

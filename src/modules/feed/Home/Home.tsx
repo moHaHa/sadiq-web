@@ -24,16 +24,19 @@ const Home: FC<HomeProps> = ({}) => {
 				</div>
 				<div className='flex justify-center mt-40px'>
 					<div className='flex flex-col lg:flex-row ic  '>
-						<div className='text-white text-46px font-600  ' style={{ fontFamily: 'ZagelArabic' }}>
+						<div className='text-white text-36px md:text-46px font-600  ' style={{ fontFamily: 'ZagelArabic' }}>
 							محافظة دمشق
 						</div>
 
 						<div className='px-30px'>
-							<div className='w-200px logo-up-down '>
+							<div className='w-120px py-42px md:w-200px logo-up-down '>
 								<SyrianLogo></SyrianLogo>
 							</div>
 						</div>
-						<div className='text-white text-36px font-400 lg:pe-63px ' style={{ fontFamily: 'ZagelArabic' }}>
+						<div
+							className='text-white text-30px md:text-36px font-400 lg:pe-63px '
+							style={{ fontFamily: 'ZagelArabic' }}
+						>
 							<div className='text-center'>مديرية الصيانة</div>
 							<div className='text-center'>قسم الشكاوى</div>
 						</div>
