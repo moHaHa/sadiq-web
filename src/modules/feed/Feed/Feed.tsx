@@ -105,7 +105,7 @@ const Feed: FC<FeedProps> = ({}) => {
 					{urlState?.value === 'map' ? (
 						<FeedMap params={params}></FeedMap>
 					) : urlState?.value === 'analysis' ? (
-						<div className='h-400px fcc font-sans'>
+						<div className='h-100vh fcc font-sans'>
 							<GlowingText text='قريبا..'></GlowingText>
 						</div>
 					) : (

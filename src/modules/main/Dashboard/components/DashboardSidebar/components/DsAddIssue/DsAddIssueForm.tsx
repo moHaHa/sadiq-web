@@ -40,7 +40,7 @@ const DsAddIssueForm: FC<DsAddIssueFormProps> = ({ onSuccess }) => {
 						formData.append('files', e.originFileObj as any);
 					});
 
-					formData.append('type', fields.type);
+					formData.append('category', fields.category);
 					formData.append('text', fields.text);
 
 					fields.location?.lat &&

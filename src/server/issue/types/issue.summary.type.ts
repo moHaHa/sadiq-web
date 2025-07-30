@@ -1,12 +1,12 @@
 import { IssueStatus } from '~/server/types/issueStatus.type';
-import { IssueType } from '~/server/types/issueType.type';
 import { LocationTIssueItem } from './issue.item.type';
 
 export type TIssueSummary = {
 	id: string;
 	text: string;
-	type: IssueType;
-	location?: LocationTIssueItem;
+	// type: IssueType;
+	category?: { id: string; name: string }[];
+	location: LocationTIssueItem;
 	activityCount: number;
 	geofence: {
 		id: string;

@@ -1,5 +1,6 @@
 import { ConfigProvider } from 'antd';
 import { ThemeProvider } from 'antd-style';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import ReactDOM from 'react-dom/client';
 import { QueryClientProvider } from 'react-query';
 import 'virtual:uno.css';

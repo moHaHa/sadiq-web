@@ -1,9 +1,9 @@
 import { UploadFile } from 'antd';
-import { IssueType } from '~/server/types/issueType.type';
 
 interface IIssueMutation {
 	text: string;
-	type: IssueType;
+	// type: IssueType;
+	category: string;
 	files: UploadFile[];
 	location?: LocationTIssueMutation;
 }

@@ -3,11 +3,11 @@ import { message } from 'antd';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FC, useState } from 'react';
+import CorruptionIcon from '~/components/@icons/CorruptionIcon/CorruptionIcon';
 import DeleteManger from '~/components/DeleteManger/DeleteManger';
 import ImageGallery from '~/components/ImageGallery/ImageGallery';
 import { useAppWrapperContext } from '~/context/AppWrapperContent/AppWrapperContent';
 import { getIssueStatusConfig } from '~/server/helpers/getIssueStatusConfig';
-import { getIssueTypeConfig } from '~/server/helpers/getIssueTypeConfig';
 import { TIssueSummary } from '~/server/issue/types/issue.summary.type';
 import { invalidateIssuesQuery } from '~/server/issue/useIssuesQuery/useIssuesQuery';
 import FeedIssueCardActivities from './components/FeedIssueCardActivities/FeedIssueCardActivities';
@@ -20,7 +20,13 @@ interface FeedIssueCardProps {
 }
 
 const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
-	const { arWord, color, icon } = getIssueTypeConfig(issue.type);
+	// const { arWord, color, icon } = getIssueTypeConfig(issue.type);
+	const { color, icon } = {
+		// arWord: 'فساد',
+		// arFullWord: "بلاغ عن فساد ",
+		color: '#f39c12', // Orange for warning
+		icon: <CorruptionIcon />, // Money bag icon
+	};
 	const { tag } = getIssueStatusConfig(issue.status);
 	const [open, setOpen] = useState(false);
 	const [publish, setPublish] = useState(issue.publish);
@@ -37,6 +43,7 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 	};
 
 	const { mine } = useAppWrapperContext();
+	const place = issue.geofence.length > 0 ? issue.geofence.map((e) => e.name).join(', ') : 'مكان غير معرف ';
 
 	return (
 		<div className='font-sans bg-white py-12px   rounded-lg'>
@@ -48,7 +55,10 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 							<div className='flex ic'>
 								{/* {issue.zone.map((e) => e.name).join(', ')} */}
 								{/* <span className='mx-4px'>، </span> */}
-								{issue.geofence.map((e) => e.name).join(', ')}
+								{place}
+							</div>
+							<div className='text-12px op-35 mt-4px'>
+								<span dir='ltr'>{issue.category?.map((e) => e.name).join(', ')}</span>
 							</div>
 							<div className='text-12px op-35 mt-4px'>
 								<span dir='ltr'>{dayjs(issue.createdAt).fromNow()}</span>

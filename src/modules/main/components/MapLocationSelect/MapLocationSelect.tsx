@@ -1,4 +1,5 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import L from 'leaflet';
+import { FC, useEffect, useRef } from 'react';
 
 interface MapLocationSelectProps {
 	value?: { lng: number; lat: number };
@@ -7,65 +8,46 @@ interface MapLocationSelectProps {
 
 const MapLocationSelect: FC<MapLocationSelectProps> = ({ onChange, value }) => {
 	const mapRef = useRef<HTMLDivElement | null>(null);
-	const [map, setMap] = useState<google.maps.Map | null>(null);
-	const marker = useRef<google.maps.marker.AdvancedMarkerElement>();
+	const markerRef = useRef<L.Marker | null>(null);
 
 	useEffect(() => {
-		// Load the Google Maps script
-		const loadGoogleMapsScript = () => {
-			const script = document.createElement('script');
-			script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`;
-			script.async = true;
-			script.onload = initializeMap;
-			document.body.appendChild(script);
-		};
+		if (!mapRef.current) return;
 
-		// Initialize the map
-		const initializeMap = async () => {
-			if (mapRef.current) {
-				const position = { lat: 33.51523954533201, lng: 36.2717525114952 };
-				const { Map } = (await google.maps.importLibrary('maps')) as google.maps.MapsLibrary;
-				const { AdvancedMarkerElement } = (await google.maps.importLibrary('marker')) as google.maps.MarkerLibrary;
+		// Set default position or use passed value
+		const defaultPosition = value || { lng: 36.27175, lat: 33.51524 };
 
-				const newMap = new Map(mapRef.current as HTMLElement, {
-					zoom: 7,
-					center: position,
-					mapId: 'DEMO_MAP_ID',
-					disableDefaultUI: true,
-				});
+		// Create the Leaflet map
+		const map = L.map(mapRef.current).setView([defaultPosition.lat, defaultPosition.lng], 7);
 
-				// add init marker
-				if (value != undefined) {
-					const exMarker = new AdvancedMarkerElement({
-						map: newMap,
-						position: value,
-					});
-					marker.current = exMarker;
-				}
-				newMap.addListener('dblclick', (e: google.maps.MapMouseEvent) => {
-					if (!e.latLng) return;
-					if (marker.current != undefined) {
-						marker.current.position = e.latLng;
-					} else {
-						const newMarker = new AdvancedMarkerElement({
-							map: newMap,
-							position: e.latLng,
-						});
-						marker.current = newMarker;
-					}
-					onChange?.(e.latLng.toJSON());
-				});
-				setMap(newMap);
-			}
-		};
+		// Add OpenStreetMap tile layer
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		}).addTo(map);
 
-		// Check if the Google Maps object is already loaded
-		if (!window.google || !window.google.maps) {
-			loadGoogleMapsScript();
-		} else {
-			initializeMap();
+		// Place the initial marker if a value exists
+		if (value) {
+			markerRef.current = L.marker([value.lat, value.lng]).addTo(map);
 		}
-	}, []);
+
+		// Handle double-click event to place the marker
+		map.on('dblclick', (e) => {
+			const { lat, lng } = e.latlng;
+
+			if (markerRef.current) {
+				markerRef.current.setLatLng([lat, lng]);
+			} else {
+				markerRef.current = L.marker([lat, lng]).addTo(map);
+			}
+
+			// Call onChange with new position
+			onChange?.({ lat, lng });
+		});
+
+		// Clean up the map when the component is unmounted
+		return () => {
+			map.remove();
+		};
+	}, [value, onChange]);
 
 	return (
 		<div
@@ -76,7 +58,7 @@ const MapLocationSelect: FC<MapLocationSelectProps> = ({ onChange, value }) => {
 				borderRadius: '12px',
 				boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.15)', // Improved mobile styling
 			}}
-		></div>
+		/>
 	);
 };
 

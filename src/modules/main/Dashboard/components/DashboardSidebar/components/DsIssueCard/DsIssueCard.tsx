@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FC } from 'react';
 import { getIssueStatusConfig } from '~/server/helpers/getIssueStatusConfig';
-import { getIssueTypeConfig } from '~/server/helpers/getIssueTypeConfig';
 import { TIssueSummary } from '~/server/issue/types/issue.summary.type';
 dayjs.extend(relativeTime);
 
@@ -13,7 +12,7 @@ interface DsIssueCardProps {
 }
 
 const DsIssueCard: FC<DsIssueCardProps> = ({ issue, onOpenDetails }) => {
-	const { arWord, color, icon } = getIssueTypeConfig(issue.type);
+	// const { arWord, color, icon } = ;
 	const { tag } = getIssueStatusConfig(issue.status);
 	const copyLinkToClipboard = (link: string) => {
 		navigator.clipboard
@@ -30,7 +29,7 @@ const DsIssueCard: FC<DsIssueCardProps> = ({ issue, onOpenDetails }) => {
 		<div className='font-sans   rounded-lg'>
 			<div className='flex justify-between ic'>
 				<div className='flex ic'>
-					<div className='me-sm'>{icon} </div>
+					{/* <div className='me-sm'>{icon} </div> */}
 					{issue.text.slice(0, 24)}
 					{issue.text.length > 24 && '..'}
 				</div>
