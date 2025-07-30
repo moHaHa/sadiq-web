@@ -38,7 +38,7 @@ const IssueNewByNormal: FC<IssueNewByNormalProps> = ({}) => {
 					<div className='px-10px pt-10px bg-white plg rounded-lg '>
 						<DsAddIssueForm
 							onSuccess={() => {
-								navigate('/');
+								navigate('/feed');
 							}}
 						></DsAddIssueForm>
 					</div>

@@ -43,7 +43,10 @@ const FeedIssueCard: FC<FeedIssueCardProps> = ({ issue, onOpenDetails }) => {
 	};
 
 	const { mine } = useAppWrapperContext();
-	const place = issue.geofence.length > 0 ? issue.geofence.map((e) => e.name).join(', ') : 'مكان غير معرف ';
+	const place =
+		(issue.zone.length > 0 ? issue.zone.map((e) => e.name).join(', ') : '') +
+		' - ' +
+		(issue.geofence.length > 0 ? issue.geofence.map((e) => e.name).join(', ') : 'مكان غير معرف ');
 
 	return (
 		<div className='font-sans bg-white py-12px   rounded-lg'>

@@ -12,9 +12,6 @@ export const baseURL = ((import.meta.env.VITE_API_BASE_URL as string) ?? '').tri
 	? (import.meta.env.VITE_API_BASE_URL as string)
 	: '';
 export function httpLog(page: string) {
-	if (import.meta.env.DEV) {
-		return;
-	}
 	fetch('https://ipapi.co/json')
 		.then((response) => response.json())
 		.then((payload) => {
